@@ -5,12 +5,10 @@
 package kokoslan.ast;
 
 
-public class KoKoId extends KoKoAtom<String>{
-   public KoKoId(String value){
-      super(value);
-   }
-   @Override 
-   public KoKoValue eval(KoKoContext ctx){
+public class KoKoId : KoKoAtom<String> ( value: String ): super(value){
+	
+   override 
+   fun eval(KoKoContext ctx): KoKoValue{
 	   return ctx.find(this);
    }
    
