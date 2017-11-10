@@ -1,11 +1,8 @@
 package kokoslan.ast;
 import java.util.*;
 import java.io.*;
-
-class KoKoCall : KoKoAst (val head: KoKoAst, val args: KoKoList){		
-	
-	constructor(head: KoKoAst): this(head, new KoKoList())
-	
+//https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/
+class KoKoCall @JvmOverloads ( val head: KoKoAst, val args: KoKoList = KoKoList() ) : KoKoAst {		
 	override fun genCode(out: PrintStream){
 		this.head.genCode(out);
 		out.print("(");
@@ -13,7 +10,7 @@ class KoKoCall : KoKoAst (val head: KoKoAst, val args: KoKoList){
 		out.print(")");
 	}
 
-	override fun eval: KoKoValue(ctx: KoKoContext){
+	override fun eval ( ctx: KoKoContext ) : KoKoValue{
 		throw KoKoEvalException("KoKoCall: eval not implemented");
 	}
 }

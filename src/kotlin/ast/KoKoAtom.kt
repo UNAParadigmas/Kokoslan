@@ -3,7 +3,7 @@ package kokoslan.ast;
 import java.io.*;
 
 
-class KoKoAtom<T> : KoKoAst (val value: T){ 
+class KoKoAtom<T> (val value: T): KoKoAst { 
    override fun genCode (out: PrintStream){
       out.print(this.value + " ")
    }

@@ -1,9 +1,9 @@
 package kokoslan.ast;
 
-class KoKoNum : KoKoAtom<Double>{
+class KoKoNum (val value: Double): KoKoAtom<Double>(value) {
    constructor(val value: Double) : super(value);
    
-    override fun eval: KoKoValue(ctx: KoKoContext){
+    override fun eval (ctx: KoKoContext) : KoKoValue{
 	   return  KoKoNumValue(value);	   
    }   
 }
