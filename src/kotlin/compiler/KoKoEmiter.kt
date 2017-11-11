@@ -12,16 +12,16 @@ package kokoslan.compile;
 import kokoslan.ast.*;
 import java.util.*;
 
-public interface KoKoEmiter{
+interface KoKoEmiter{
 	
-   val TRUE = KoKoBool(true)
-   val FALSE = KoKoBool(false)
    
-   val PLUS = KoKoId("+")
-   val MINUS = KoKoId("-")
-   val MULT = KoKoId("*")
-   val ERROR = KoKoId("??")
-   
+	   val TRUE = KoKoBool(true)
+	   val FALSE = KoKoBool(false)
+	   
+	   val PLUS = KoKoId("+")
+	   val MINUS = KoKoId("-")
+	   val MULT = KoKoId("*")
+	   val ERROR = KoKoId("??")
    fun PROGRAM(stmts: List<KoKoAst>): KoKoProgram{ 
        return KoKoProgram(stmts)
    }
@@ -51,12 +51,12 @@ public interface KoKoEmiter{
        return KoKoNum(value);
    }
    
-   fun ID(String value): KoKoId{ 
+   fun ID(value: String): KoKoId{ 
        return KoKoId(value);
    }
    
    
-   fun LIST @JVMoverload (expressions: List<KoKoAst>? = null): KoKoList{
+   fun LIST(expressions: List<KoKoAst>? = null): KoKoList{
 	   expressions?.let{
 		 return KoKoList(expressions)
 	   }
