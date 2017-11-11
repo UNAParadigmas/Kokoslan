@@ -6,6 +6,13 @@
   @since 2017
 */
 package kokoslan.ast;
+/*
+  @author Denis Rodriguez Viquez
+          Luis Vasquez Quiros
+          Walter Chavez Oviedo
+          Manuel Masis Segura
+  @since 2017
+*/
 import java.util.*;
 import java.io.*;
 
