@@ -7,5 +7,5 @@ interface KoKoAst{
    }
    fun genCode( out: PrintStream ){
    }
-   fun eval(KoKoContext ctx): KoKoValue
+   fun eval(ctx: KoKoContext): KoKoValue
 }

@@ -12,9 +12,9 @@ import java.io.*;
 
 class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst, val right: KoKoAst): KoKoOperation(oper, Arrays.asList<Any>(left, right)) {
 	
-	fun left() = this.operands.[0]
+	fun left() = this.operands[0]
 
-  	fun right() = this.operands.[1]
+  	fun right() = this.operands[1]
 
 	override fun eval(ctx: KoKoContext): KoKoValue{
 	   try {

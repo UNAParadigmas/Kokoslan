@@ -1,16 +1,16 @@
 
-package kokoslan.ast;
-import java.io.*;
+package kokoslan.ast
+import java.io.PrintStream
 
 
 class KoKoAtom<T> (val value: T): KoKoAst { 
-   override fun genCode (out: PrintStream) = out.print(this.value + " ")
+   override fun genCode (out: PrintStream) = out.print("${this.value} ")
 
-   override fun eval: KoKoValue(ctx: KoKoContext){
+   override fun eval(ctx: KoKoContext): KoKoValue{
 	   throw KoKoEvalException("KoKoAtom: eval not implemented")
    }
    
-   fun toString: String(){
+   override fun toString(): String{
 	   return value.toString()
    }
 }
