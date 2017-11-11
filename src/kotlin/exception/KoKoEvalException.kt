@@ -1,3 +1,3 @@
-package kokoslan.ast
+package kokoslan.exception
 
-class KoKoEvalException (val msg: String): RuntimeException(smg) 
+class KoKoEvalException (val msg: String): RuntimeException(msg) 

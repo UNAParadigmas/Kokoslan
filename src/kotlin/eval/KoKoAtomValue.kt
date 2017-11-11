@@ -9,7 +9,7 @@ package kokoslan.eval
 import java.io.*
 
 open class KoKoAtomValue<T>(val value: T) : KoKoValue {
-   fun toString(): String{
+   override fun toString(): String{
       return this.value.toString()
    }
 }

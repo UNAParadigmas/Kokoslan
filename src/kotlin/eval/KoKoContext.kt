@@ -8,12 +8,16 @@
 package kokoslan.eval
 
 import java.util.*
+import kokoslan.ast.KoKoId
+import kokoslan.exception.* 
 
-class KoKoContext (private val parent: KoKoContext? = null) : HashMap<String, KoKoValue>{
+class KoKoContext (private val parent: KoKoContext? = null) : HashMap<String, KoKoValue>(){
 	
 	fun find(id: KoKoId): KoKoValue {
-		val value = this.[id.value]
-		value ?: parent.find(id) ?: throw KoKoNotFoundId(id)
+		val hashVal: KoKoValue? = this[id.value]
+		if(hashVal != null)	return hashVal
+		if(parent == null) throw KoKoNotFoundId(id)
+		return parent.find(id)
 	}
 
 	fun assoc(id: KoKoId, value: KoKoValue) = put(id.value, value)
