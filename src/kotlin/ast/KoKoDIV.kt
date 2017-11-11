@@ -10,7 +10,7 @@ class KoKoMINUS (oper: KoKoAst, left: KoKoAst, right: KoKoAst) : KoKoBiOperation
 			val rv = right().eval(ctx) as KoKoNumValue
 	        return	KoKoNumValue(lv.getValue() / rv.getValue())
 	   	} catch (Exception e) {
-			throw KoKoEvalException(e.getMessage());
+			throw KoKoEvalException(e.getMessage())
 	  	}
 	   
    	}

@@ -58,7 +58,7 @@ class KoKoc {
 			
 			// Parse, Compile and Generate code
 			// Starting point is rule (context) 'program' (See grammar KoKoslan.g4)
-			val tree = parser.program();
+			val tree = parser.program()
 			
 			// Compile tree
 			if (args.length > 1) 

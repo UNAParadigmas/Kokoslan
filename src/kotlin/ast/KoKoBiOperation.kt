@@ -12,13 +12,9 @@ import java.io.*;
 
 class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst, val right: KoKoAst): KoKoOperation(oper, Arrays.asList<Any>(left, right)) {
 	
-	fun left():KoKoAst {
-    	return this.operands.[0]
-  	}
+	fun left() = this.operands.[0]
 
-  	fun right():KoKoAst {
-    	return this.operands.[1]
-  	}
+  	fun right() = this.operands.[1]
 
 	override fun eval(ctx: KoKoContext): KoKoValue{
 	   try {
@@ -35,7 +31,7 @@ class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst, val right: KoKoAst):
 			}
 			
 	   }catch (e: Exception) {
-			throw KoKoEvalException(e.message());
+			throw KoKoEvalException(e.message())
 	    }
 	   
    }
