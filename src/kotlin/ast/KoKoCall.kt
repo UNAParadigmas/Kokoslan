@@ -1,8 +1,8 @@
-package kokoslan.ast;
-import java.util.*;
-import java.io.*;
+package kokoslan.ast
+import java.util.*
+import java.io.*
 
-class KoKoCall @JvmOverloads ( val head: KoKoAst, val args: KoKoList = KoKoList() ) : KoKoAst {		
+class KoKoCall ( val head: KoKoAst, val args: KoKoList = KoKoList() ) : KoKoAst {		
 	override fun genCode(out: PrintStream){
 		this.head.genCode(out)
 		out.print("(")

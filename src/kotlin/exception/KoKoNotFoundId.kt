@@ -1,4 +1,3 @@
 package kokoslan.ast
 
-class KoKoNotFoundId (val id: KoKoId) : 
-	RuntimeException ( String.format("*** Id '%s' is not defined! ***", id.getValue()) )
+class KoKoNotFoundId (val id: KoKoId) : RuntimeException("*** Id ${id.value} is not defined! ***")

@@ -5,11 +5,11 @@
           Manuel Masis Segura
   @since 2017
 */
-package kokoslan.ast;
+package kokoslan.eval
 
-import java.util.*;
+import java.util.*
 
-class KoKoContext @JvmOverloads (private val parent: KoKoContext? = null) : HashMap<String, KoKoValue>{
+class KoKoContext (private val parent: KoKoContext? = null) : HashMap<String, KoKoValue>{
 	
 	fun find(id: KoKoId): KoKoValue {
 		val value = this.[id.value]

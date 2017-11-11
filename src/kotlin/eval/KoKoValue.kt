@@ -1,3 +1,3 @@
-package kokoslan.ast;
+package kokoslan.eval;
 
 interface KoKoValue

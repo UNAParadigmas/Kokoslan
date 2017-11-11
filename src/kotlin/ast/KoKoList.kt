@@ -2,11 +2,8 @@ package kokoslan.ast;
 import java.util.*;
 import java.io.*;
 
-class KoKoList : ArrayList<KoKoAst>, KoKoAst {
+class KoKoList(val list : List<KoKoAst> = ArrayList<KoKoAst>()) : ArrayList<KoKoAst>(list), KoKoAst {
 	
-	constructor(list :List<KoKoAst>?) : super(list)
-	cunstructor() : super()
-		
 	override fun genCode (out: PrintStream){
 		if(this.size == 0) return;
 		this.[0].genCode(out)

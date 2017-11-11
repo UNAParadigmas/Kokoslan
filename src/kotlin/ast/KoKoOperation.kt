@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 
 
-class KoKoOperation @JvmOverloads (val _operator: KoKoAst, val operands: List<KoKoAst> = ArrayList<KoKoAst>) : KoKoAst {
+open class KoKoOperation (val _operator: KoKoAst, val operands: List<KoKoAst> = ArrayList<KoKoAst>) : KoKoAst {
    
     fun addOperand( x: KoKoAst ) = this.operands.add(x)
 

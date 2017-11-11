@@ -10,7 +10,7 @@ import java.util.*;
 import java.io.*;
 
 
-class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst, val right: KoKoAst): KoKoOperation(oper, Arrays.asList<Any>(left, right)) {
+open class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst, val right: KoKoAst): KoKoOperation(oper, listOf(left, right)) {
 	
 	fun left() = this.operands[0]
 
@@ -31,7 +31,7 @@ class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst, val right: KoKoAst):
 			}
 			
 	   }catch (e: Exception) {
-			throw KoKoEvalException(e.message())
+			throw KoKoEvalException(e.message)
 	    }
 	   
    }

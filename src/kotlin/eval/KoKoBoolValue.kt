@@ -5,6 +5,6 @@
           Manuel Masis Segura
   @since 2017
 */
-package kokoslan.ast;
+package kokoslan.eval
 
 class KoKoBoolValue(value: Boolean) : KoKoAtomValue<Boolean>(value)
