@@ -8,7 +8,7 @@
 package kokoslan.ast;
 import java.io.*;
 
-class KoKoAtomValue<T>(val value: T): KoKoValue{
+class KoKoAtomValue<T>(val value: T) : KoKoValue {
    fun toString(): String{
       return this.value.toString();
    }

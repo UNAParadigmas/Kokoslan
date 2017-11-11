@@ -11,7 +11,6 @@ class KoKoMINUS (oper: KoKoAst, left: KoKoAst, right: KoKoAst) : KoKoBiOperation
 	        return	KoKoNumValue(lv.getValue() - rv.getValue())
 	   	} catch (Exception e) {
 			throw KoKoEvalException(e.getMessage());
-	  	}
-	   
+	  	}	   
    	}
 }
