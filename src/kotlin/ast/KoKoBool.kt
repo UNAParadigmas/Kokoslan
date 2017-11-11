@@ -11,6 +11,5 @@ import  kokoslan.eval.KoKoBoolValue
 import  kokoslan.eval.KoKoContext
 import  kokoslan.eval.KoKoValue
 
-class KoKoBool (value: Boolean): KoKoAtom<Boolean> (value){
-    fun eval(ctx:KoKoContext) = KoKoBoolValue(value)
-}
+class KoKoBool (value: Boolean): KoKoAtom<Boolean> (value)
+    //override fun eval(ctx:KoKoContext) = KoKoBoolValue(value)

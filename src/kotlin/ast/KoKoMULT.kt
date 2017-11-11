@@ -1,6 +1,13 @@
-package kokoslan.ast;
-import java.util.*;
-import java.io.*;
+/*
+  @author Denis Rodriguez Viquez
+          Luis Vasquez Quiros
+          Walter Chavez Oviedo
+          Manuel Masis Segura
+  @since 2017
+*/
+package kokoslan.ast
+import java.util.*
+import java.io.*
 
 class KoKoMULT (oper: KoKoAst, left: KoKoAst, right: KoKoAst) : KoKoBiOperation (oper, left, right) {
 	

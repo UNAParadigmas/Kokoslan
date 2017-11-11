@@ -6,18 +6,11 @@
   @since 2017
 */
 package kokoslan.ast;
-/*
-  @author Denis Rodriguez Viquez
-          Luis Vasquez Quiros
-          Walter Chavez Oviedo
-          Manuel Masis Segura
-  @since 2017
-*/
 import java.util.*;
 import java.io.*;
 
 
-open class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst, val right: KoKoAst): KoKoOperation(oper, listOf(left, right)) {
+open class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst, val right: KoKoAst): KoKoOperation(oper, mutableListOf(left, right)) {
 	
 	fun left() = this.operands[0]
 

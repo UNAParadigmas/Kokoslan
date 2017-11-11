@@ -9,7 +9,7 @@ package kokoslan.eval
 
 import java.util.*
 import kokoslan.ast.KoKoId
-import kokoslan.exception.* 
+import kokoslan.exception.*
 
 class KoKoContext (private val parent: KoKoContext? = null) : HashMap<String, KoKoValue>(){
 	

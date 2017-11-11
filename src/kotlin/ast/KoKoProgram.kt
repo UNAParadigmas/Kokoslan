@@ -1,6 +1,13 @@
-package kokoslan.ast;
-import java.util.*;
-import java.io.*;
+/*
+  @author Denis Rodriguez Viquez
+          Luis Vasquez Quiros
+          Walter Chavez Oviedo
+          Manuel Masis Segura
+  @since 2017
+*/
+package kokoslan.ast
+import java.util.*
+import java.io.*
 
 class KoKoProgram (private val statements: List<KoKoAst>) : KoKoAst {
     
@@ -11,5 +18,5 @@ class KoKoProgram (private val statements: List<KoKoAst>) : KoKoAst {
         return this.statements[this.statements.size -1].eval(ctx)
 	}
 
-	override fun eval () = eval( KoKoContext() )
+	fun eval () = eval( KoKoContext() )
 }
