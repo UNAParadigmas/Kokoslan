@@ -4,7 +4,7 @@ import java.io.*;
 
 class KoKoList : ArrayList<KoKoAst>, KoKoAst {
 	
-	constructor(list :List<KoKoAst>) : super(list)
+	constructor(list :List<KoKoAst>?) : super(list)
 	cunstructor() : super()
 		
 	override fun genCode (out: PrintStream){
