@@ -18,13 +18,12 @@ class KoKoList : ArrayList<KoKoAst>, KoKoAst {
 	}
 	
 	override fun eval (ctx: KoKoContext) : KoKoValue {
-		var res = KoKoListValue();
+		var res = KoKoListValue()
 		this.stream().forEach{ res.add(it.eval(ctx)) }
-		return res;
+		return res
 	}
 	
-	override fun eval : KoKoValue {
-		return this.eval(KoKoContext());
-	}
+	override fun eval (): KoKoValue = this.eval(KoKoContext())
+	
 	
 }

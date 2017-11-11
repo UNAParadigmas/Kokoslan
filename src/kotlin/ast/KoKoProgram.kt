@@ -13,7 +13,7 @@ class KoKoProgram (private val statements: List<KoKoAst>) : KoKoAst {
         return this.statements[this.statements.size -1].eval(ctx)
 	}
 
-	override fun eval : KoKoValue{
+	override fun eval () : KoKoValue{
 		return  eval( KoKoContext() );
 	}
 }

@@ -2,7 +2,7 @@ package kokoslan.ast;
 import java.io.*;
 
 
-class KoKoLet : KoKoAst constructor(val id: KoKoAst, val expr: KoKoAst ){
+class KoKoLet (val id: KoKoAst, val expr: KoKoAst ): KoKoAst {
 
    fun genCode( out: PrintStream ){
       out.print("let ");
@@ -12,8 +12,8 @@ class KoKoLet : KoKoAst constructor(val id: KoKoAst, val expr: KoKoAst ){
 	  out.println();
    }
    fun eval(KoKoContext ctx): KoKoValue {
-	   var value: KoKoValue = expr.eval(ctx);
-	   ctx.assoc((KoKoId)id, value);
+	   var value = expr.eval(ctx);
+	   ctx.assoc(id as KoKoId, value);
 	   return value;
    }
    

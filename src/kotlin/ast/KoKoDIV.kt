@@ -8,7 +8,7 @@ class KoKoMINUS (oper: KoKoAst, left: KoKoAst, right: KoKoAst) : KoKoBiOperation
 	   	try {
 		    val lv = left().eval(ctx) as KoKoNumValue
 			val rv = right().eval(ctx) as KoKoNumValue
-	        return	KoKoNumValue(lv.getValue() - rv.getValue())
+	        return	KoKoNumValue(lv.getValue() / rv.getValue())
 	   	} catch (Exception e) {
 			throw KoKoEvalException(e.getMessage());
 	  	}

@@ -10,18 +10,27 @@ import java.util.*;
 import java.io.*;
 
 
-class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst = this.operands[0], val right: KoKoAst = this.operands[1]): KoKoOperation(oper, Arrays.asList(left, right)) {
+class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst, val right: KoKoAst): KoKoOperation(oper, Arrays.asList<Any>(left, right)) {
 	
+	fun left():KoKoAst {
+    	return this.operands.[0]
+  	}
+
+  	fun right():KoKoAst {
+    	return this.operands.[1]
+  	}
+
 	override fun eval(ctx: KoKoContext): KoKoValue{
 	   try {
-	        val operId: KoKoId = oper as KoKoId
-			val lv: KoKoNumValue = left().eval(ctx) as KoKoNumValue
-			val rv: KoKoNumValue  = right().eval(ctx) as KoKoNumValue
+	        val operId = oper as KoKoId
+			val lv = this.left().eval(ctx) as KoKoNumValue
+			val rv = this.right().eval(ctx) as KoKoNumValue
 
-			when(operId.value()){
-				"+" -> return KoKoNumValue(lv.value() + rv.value())
-				"-" -> return KoKoNumValue(lv.value() - rv.value())
-				"*" -> return KoKoNumValue(lv.value() * rv.value())
+			when(operId.value){
+				"+" -> return KoKoNumValue(lv.value + rv.value)
+				"-" -> return KoKoNumValue(lv.value - rv.value)
+				"*" -> return KoKoNumValue(lv.value * rv.value)
+				"/" -> return KoKoNumValue(lv.value / rv.value)
 				else -> throw KoKoEvalException("KoKoBiOperation unimpemented operator")
 			}
 			
