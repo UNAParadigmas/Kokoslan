@@ -14,58 +14,57 @@ import java.util.*;
 
 public interface KoKoEmiter{
 	
-   final KoKoBool TRUE = new KoKoBool(true);
-   final KoKoBool FALSE = new KoKoBool(false);
+   val TRUE = KoKoBool(true)
+   val FALSE = KoKoBool(false)
    
-   final KoKoAst PLUS = new KoKoId("+");
-   final KoKoAst MINUS = new KoKoId("-");
-   final KoKoAst MULT = new KoKoId("*");
-   final KoKoAst ERROR = new KoKoId("??");
+   val PLUS = KoKoId("+")
+   val MINUS = KoKoId("-")
+   val MULT = KoKoId("*")
+   val ERROR = KoKoId("??")
    
-   default KoKoProgram PROGRAM(List<KoKoAst> stmts){ 
-       return new KoKoProgram(stmts);
+   fun PROGRAM(stmts: List<KoKoAst>): KoKoProgram{ 
+       return KoKoProgram(stmts)
    }
    
-   default KoKoAst LET(KoKoAst id, KoKoAst expr){
-	   return new KoKoLet(id, expr);
+   fun LET(id: KoKoAst, expr: KoKoAst): KoKoAst{
+	   return KoKoLet(id, expr)
    }
-   default KoKoAst OPERATOR(String operator){
-	   return new KoKoId(operator);
+   fun OPERATOR(operator: String): KoKoAst{
+	   return KoKoId(operator)
    }
-   default KoKoAst OPERATION(KoKoAst operator, List<KoKoAst> operands){ 
-       return new KoKoOperation(operator, operands);
+   fun OPERATION(operator: KoKoAst, operands: List<KoKoAst>): KoKoAst{ 
+       return KoKoOperation(operator, operands)
    }
    
-   default KoKoAst BI_OPERATION(KoKoAst operator, KoKoAst left, KoKoAst right){ 
-       KoKoId id = (KoKoId)operator;
-	   System.out.print("Operator = " + id.getValue());
-	   switch( id.getValue() ){
-		   case "+" : return new KoKoPLUS(operator, left, right);
-		   case "-" : return new KoKoMINUS(operator, left, right);
-		   case "*" : return new KoKoMULT(operator, left, right);
-		   default  : return new KoKoBiOperation(operator, left, right);
+   fun BI_OPERATION(operator: KoKoAst, left: KoKoAst, right: KoKoAst): KoKoAst{ 
+       val id = operator as KoKoId
+	   println("Operator = " + id.getValue())
+	   when( id.getValue() ){
+		   "+" -> return KoKoPLUS(operator, left, right)
+		   "-" -> return KoKoMINUS(operator, left, right)
+		   "*" -> return KoKoMULT(operator, left, right);
+		   else  -> return KoKoBiOperation(operator, left, right);
 	   }
-       
    }
    
-   default KoKoNum NUM(double value){ 
-       return new KoKoNum(value);
+   fun NUM(value: Double): KoKoNum{ 
+       return KoKoNum(value);
    }
    
-   default KoKoId ID(String value){ 
-       return new KoKoId(value);
+   fun ID(String value): KoKoId{ 
+       return KoKoId(value);
    }
    
-   default KoKoList LIST(List<KoKoAst> expressions){
-	   return new KoKoList(expressions);
+   
+   fun LIST @JVMoverload (expressions: List<KoKoAst>? = null): KoKoList{
+	   expressions?.let{
+		 return KoKoList(expressions)
+	   }
+	   return KoKoList()
    }
    
-   default KoKoList LIST(){
-	   return new KoKoList();
-   }
-   
-   default KoKoAst CALL(KoKoAst head, KoKoList args){
-	   return new KoKoCall(head, args);
+   fun CALL(head: KoKoAst, args: KoKoList): KoKoAst{
+	   return KoKoCall(head, args);
    }
    
    
