@@ -1,6 +1,7 @@
 package kokoslan.ast;
 import java.util.*;
 import java.io.*;
+import java.util.stream.*;
 
 public class KoKoCall implements KoKoAst{
 	protected KoKoList args;
@@ -21,6 +22,11 @@ public class KoKoCall implements KoKoAst{
 		out.print(")");
 	}
 	public KoKoValue eval(KoKoContext ctx){
-		throw new KoKoEvalException("KoKoCall: eval not implemented");
+		KoKoValue res = null;
+		// for(int i = 0; i < args.size() -1 ; i++){
+			// res = args.get(i).eval(ctx);
+		// }
+		res = args.get(args.size() -1).eval(ctx);
+		return res;
 	}
 }

@@ -19,7 +19,8 @@ part_expr    :  lambda_expr | evaluable_expr
 ;
 lambda_expr  : '\\' pattern '.' expression
 ;
-
+parentesis_expr : LEFT_PAR evaluable_expr RIGHT_PAR
+;
 evaluable_expr    :  add_expr test_expr?
 ;
 add_expr          :  mult_expr (add_oper mult_expr)*
@@ -33,7 +34,7 @@ mult_oper         : oper=('*' | '/')
 test_expr         :  '?' expression ':' expression
 ;
 // Value Expressions
-value_expr   :    '(' expression ')' 	#ParentValueExpr
+value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
                  | value_expr call_args	#callValueExpr
                  | atomic_value 		#AtomicValueExpr
 				 | list_value 			#ListValueExpr
@@ -73,6 +74,7 @@ number : NUMBER
 ;
 bool : TRUE | FALSE
 ;
+
 ////////////////////////////////////////////////////////////////
 //                    Lexer    
 ///////////////////////////////////////////////////////////////

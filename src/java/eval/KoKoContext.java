@@ -9,7 +9,7 @@ import java.util.*;
 public class KoKoContext extends HashMap<String, KoKoValue>{
 	private KoKoContext parent; 
 	public KoKoContext(){
-		this(null);
+		this(null); //contexto que apunta a nulo
 	}
 	public KoKoContext(KoKoContext parent){
 		this.parent = parent;

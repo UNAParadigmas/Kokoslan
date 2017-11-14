@@ -1,3 +1,7 @@
+/**
+ @author loriacarlos@gmail.com
+ 
+*/
 package kokoslan.ast;
 import java.util.*;
 import java.io.*;

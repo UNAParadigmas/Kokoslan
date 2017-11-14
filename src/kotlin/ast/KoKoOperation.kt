@@ -1,31 +1,24 @@
-/*
-  @author Denis Rodriguez Viquez
-          Luis Vasquez Quiros
-          Walter Chavez Oviedo
-          Manuel Masis Segura
-  @since 2017
-*/
-package kokoslan.ast
-import java.util.*
-import java.io.*
-import kokoslan.eval.*
-import kokoslan.exception.*
+package kokoslan.kotlin.ast;
 
-open class KoKoOperation (val _operator: KoKoAst, val operands: MutableList<KoKoAst> = mutableListOf<KoKoAst>()) : KoKoAst {
-    
-    open fun addOperand( x: KoKoAst ) = this.operands.add(x)
+import java.util.*;
+import java.io.*;
 
-    open override fun genCode(out: PrintStream){
-	    this.operands.first().genCode(out)
-        this.operands
-            .drop(1)
-            .forEach{
-                this._operator.genCode(out)
-				it.genCode(out)
-			}
-    }
 
-    open override fun eval ( ctx: KoKoContext ) : KoKoValue{
-	    throw KoKoEvalException("KoKoOperation: eval not implemented")   
-    }   
+open class KoKoOperation(val operator : KoKoAst, val operands: MutableList<KoKoAst> = mutableListOf()) : KoKoAst{
+
+   fun addOperand( x : KoKoAst ){
+	   this.operands.add(x)
+   }
+   
+   override fun genCode(out:PrintStream){
+		this.operands[0].genCode(out)
+		( 1 until this.operands.size ).forEach{
+			this.operator.genCode(out)
+			this.operands[it].genCode(out)
+		}
+   }
+   
+   override fun eval(ctx:KoKoContext) : KoKoValue {
+	   throw KoKoEvalException("KoKoOperation: eval no implementado") 
+   }
 }

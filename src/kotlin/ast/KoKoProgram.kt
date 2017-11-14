@@ -1,24 +1,25 @@
-/*
-  @author Denis Rodriguez Viquez
-          Luis Vasquez Quiros
-          Walter Chavez Oviedo
-  @since 2017
-*/
-package kokoslan.ast
-import java.util.*
-import java.io.*
-import kokoslan.eval.*
+package kokoslan.kotlin.ast;
 
-class KoKoProgram (private val statements: List<KoKoAst>) : KoKoAst {
-    
-    override fun genCode (out: PrintStream) = this.statements.forEach{ it.genCode(out) }
+import java.util.*;
+import java.io.*;
 
-    override fun eval (ctx: KoKoContext) : KoKoValue {
-		this.statements.subList(0, statements.size -2).forEach{ it.eval(ctx) }
-        return this.statements[this.statements.size -1].eval(ctx)
-	  }
-
-	  fun eval (): KoKoValue{
-        return eval(KoKoContext())
-    } 
+class KoKoProgram(val statements: MutableList<KoKoAst>) : KoKoAst{
+   
+	override fun genCode(out:PrintStream){
+		( 0 until statements.size ).forEach{
+			this.statements[it].genCode(out)
+		}
+	}
+   
+    override fun eval(ctx : KoKoContext ) : KoKoValue {
+		var res : KoKoValue
+		this.statements.forEach{
+			res = it.eval(ctx)
+		}
+		res = this.statements[this.statements.size - 1].eval(ctx)
+		return res
+	}
+	
+	fun eval() = eval(KoKoContext(KoKoContext()))
+	
 }

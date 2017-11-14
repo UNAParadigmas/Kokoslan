@@ -1,5 +1,2 @@
-/*
-    Third Demo Test: Multiplication syntax and Evaluation
-*/
-let x = 6
-(x+2)+3
+let x = 5
+2+3*4

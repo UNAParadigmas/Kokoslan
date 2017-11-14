@@ -1,17 +1,11 @@
-/*
-  @author Denis Rodriguez Viquez
-          Luis Vasquez Quiros
-          Walter Chavez Oviedo
-          Manuel Masis Segura
-  @since 2017
+/**
+ @author loriacarlos@gmail.com
+ 
 */
-package kokoslan.eval
-
-import kokoslan.ast.KoKoProgram
+package kokoslan.kotlin.ast;
 
 class KoKoEvaluator {
-	/*fun evaluate (tree: KoKoProgram, ctx: KoKoContext) : KoKoValue? {
-		return null;
-	}*/
-	
+	fun evaluate(tree:KoKoProgram, ctx:KoKoContext) : KoKoValue? {
+		return null
+	}
 }

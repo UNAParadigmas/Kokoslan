@@ -1,0 +1,23 @@
+package kokoslan.kotlin.ast;
+
+import java.util.*;
+import java.io.*;
+import java.util.stream.*;
+
+class KoKoCall(var head:KoKoAst, var args:KoKoList = KoKoList(Arrays.asList())) : KoKoAst{
+	
+	override fun genCode(out: PrintStream){
+		this.head.genCode(out)
+		out.print("(")
+		this.args.genCode(out)
+		out.print(")")
+	}
+	
+	override fun eval(ctx : KoKoContext) : KoKoValue{
+		var res : KoKoValue?
+		println("Context = " + ctx.find(KoKoId(head.toString())))
+		//res = args[args.size - 1].eval(ctx)
+		res = ctx.find(KoKoId(head.toString()))
+		return res
+	}
+}

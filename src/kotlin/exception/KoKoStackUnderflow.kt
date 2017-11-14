@@ -1,3 +1,2 @@
-package kokoslan.exception
-
-class KoKoStackUnderflow () : RuntimeException ("Pop of an empty context")
+package kokoslan.kotlin.ast;
+class KoKoStackUnderflow() : RuntimeException("Pop of an empty context"){}

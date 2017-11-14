@@ -38,7 +38,6 @@ public interface KoKoEmiter{
    
    default KoKoAst BI_OPERATION(KoKoAst operator, KoKoAst left, KoKoAst right){ 
        KoKoId id = (KoKoId)operator;
-	   System.out.print("Operator = " + id.getValue());
 	   switch( id.getValue() ){
 		   case "+" : return new KoKoPLUS(operator, left, right);
 		   case "-" : return new KoKoMINUS(operator, left, right);
@@ -67,6 +66,4 @@ public interface KoKoEmiter{
    default KoKoAst CALL(KoKoAst head, KoKoList args){
 	   return new KoKoCall(head, args);
    }
-   
-   
 }

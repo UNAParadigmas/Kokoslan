@@ -1,5 +1,7 @@
-package kokoslan.exception
+/**
+ @author loriacarlos@gmail.com
+ 
+*/
+package kokoslan.kotlin.ast;
 
-import kokoslan.ast.KoKoId
-
-class KoKoNotFoundId (val id: KoKoId) : RuntimeException("*** Id ${id.value} is not defined! ***")
+class KoKoNotFoundId(val id:KoKoId) : RuntimeException("*** Id '' $id.value not defined! ***"){}

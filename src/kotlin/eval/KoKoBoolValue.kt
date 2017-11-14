@@ -1,10 +1,7 @@
-/*
-  @author Denis Rodriguez Viquez
-          Luis Vasquez Quiros
-          Walter Chavez Oviedo
-          Manuel Masis Segura
-  @since 2017
+/**
+ @author loriacarlos@gmail.com
+ 
 */
-package kokoslan.eval
+package kokoslan.kotlin.ast;
 
-class KoKoBoolValue(value: Boolean) : KoKoAtomValue<Boolean>(value)
+class KoKoBoolValue(value:Boolean):KoKoAtomValue<Boolean>(value){}

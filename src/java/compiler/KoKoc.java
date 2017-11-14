@@ -25,7 +25,7 @@ import java.io.InputStream;
 import kokoslan.parser.*;
 
 public class KoKoc {
-	public static final String VERSION = "KoKoc v0.0 CR EIF400.II-2017";
+	public static final String VERSION = "KoKoc v0.0 CR EIF400.II-2017 JAVA";
 	public static String PROMPT = ">";
 	
     public static void main(String[] args) throws Exception {

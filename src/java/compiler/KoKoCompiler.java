@@ -130,7 +130,7 @@ public class KoKoCompiler extends KoKoslanBaseVisitor<KoKoAst> implements KoKoEm
 	                               .stream()
 	                               .map( e -> visit(e) )
 								   .collect(Collectors.toList());
-      KoKoAst[] r = {operands.get(0)};
+	  KoKoAst[] r = {operands.get(0)};
       java.util.stream.IntStream
 	                  .range(1, operands.size())
 	                  .forEach( i -> r[0] = BI_OPERATION(operators.get(i - 1), r[0], operands.get(i)));	  
