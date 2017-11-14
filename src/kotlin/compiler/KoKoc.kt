@@ -1,17 +1,8 @@
-/**
- * KoKo controller of compilation
- * Purpose is to start a compilation
- * Demo ANTLR
- @author loriacarlos@gmail.com 
- @version EIF400.II-2017
- @since 0.0
-*/
-/**
- * Kokoslan toy controller
- * Demo ANTLR (suing visitors)
- @author loriacarlos@gmail.com 
- @version EIF400.II-2017
- @since 0.0
+/*
+  @author Denis Rodriguez Viquez
+          Luis Vasquez Quiros
+          Walter Chavez Oviedo
+  @since 2017
 */
 
 package kokoslan.compile

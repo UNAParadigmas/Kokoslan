@@ -1,0 +1,5 @@
+/*
+    Second Demo Test: Call syntax
+*/
+let x = 666
+f(x)

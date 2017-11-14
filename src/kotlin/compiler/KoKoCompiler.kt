@@ -1,9 +1,8 @@
-/**
- * Kokoslan toy compiler
- * Demo ANTLR (suing visitors)
- @author loriacarlos@gmail.com 
- @version EIF400.II-2017
- @since 0.0
+/*
+  @author Denis Rodriguez Viquez
+          Luis Vasquez Quiros
+          Walter Chavez Oviedo
+  @since 2017
 */
 package kokoslan.compile
 
@@ -76,7 +75,7 @@ class KoKoCompiler (outputFile: String? = null) : KoKoslanBaseVisitor<KoKoAst>()
 		var operands =  ctx.mult_expr().map{ visit(it) }
 		var r = arrayOf<KoKoAst>(operands[0])
 	  
-		(1..operands.size).forEach{r[0] = BI_OPERATION(operators[it - 1], r[0], operands[it])}	  
+		(1..operands.size-1).forEach{r[0] = BI_OPERATION(operators[it - 1], r[0], operands[it])}	  
 		return r[0]
    
    }
@@ -89,7 +88,7 @@ class KoKoCompiler (outputFile: String? = null) : KoKoslanBaseVisitor<KoKoAst>()
 		var operands =  ctx.value_expr().map{ visit(it) }
     	var r = arrayOf<KoKoAst>(operands[0])
 	  
-		(1..operands.size).forEach{r[0] = BI_OPERATION(operators[it - 1], r[0], operands[it])}	  
+		(1..operands.size-1).forEach{r[0] = BI_OPERATION(operators[it - 1], r[0], operands[it])}	  
 		return r[0]
 	}
    
