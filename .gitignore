@@ -1,5 +1,9 @@
 # Created by https://www.gitignore.io/api/java,windows
 
+!classes
+classes/kokoslan/*
+classes/META-INF/*
+
 ### Java ###
 # Compiled class file
 *.class
