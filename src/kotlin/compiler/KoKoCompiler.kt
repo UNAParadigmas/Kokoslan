@@ -97,8 +97,8 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 		
 		if(operands[0]==null){
 			println("CTX2 = $ctx")
-			println(ctx.expression())
-			return visit(ctx.expression());
+			println(ctx.value_expr(0))
+			return visit(ctx.value_expr(0));
 			}
 		else{ 
 			val r = mutableListOf<KoKoAst>(operands[0])
