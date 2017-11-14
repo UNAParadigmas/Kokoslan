@@ -2,12 +2,13 @@
   @author Denis Rodriguez Viquez
           Luis Vasquez Quiros
           Walter Chavez Oviedo
-          Manuel Masis Segura
   @since 2017
 */
-package kokoslan.ast;
-import java.util.*;
-import java.io.*;
+package kokoslan.ast
+import kokoslan.eval.*
+import java.util.*
+import java.io.*
+import kokoslan.exception.*
 
 
 open class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst, val right: KoKoAst): KoKoOperation(oper, mutableListOf(left, right)) {
@@ -30,7 +31,7 @@ open class KoKoBiOperation(val oper: KoKoAst, val left: KoKoAst, val right: KoKo
 				else -> throw KoKoEvalException("KoKoBiOperation unimpemented operator")
 			}
 			
-	   }catch (e: Exception) {
+	   }catch (e: Exception){
 			throw KoKoEvalException(e.message)
 	    }
 	   

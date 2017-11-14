@@ -2,14 +2,12 @@
   @author Denis Rodriguez Viquez
           Luis Vasquez Quiros
           Walter Chavez Oviedo
-          Manuel Masis Segura
   @since 2017
 */
 package kokoslan.ast;
 
-import  kokoslan.eval.KoKoBoolValue
-import  kokoslan.eval.KoKoContext
-import  kokoslan.eval.KoKoValue
+import  kokoslan.eval.*
 
-class KoKoBool (value: Boolean): KoKoAtom<Boolean> (value)
-    //override fun eval(ctx:KoKoContext) = KoKoBoolValue(value)
+class KoKoBool (value: Boolean): KoKoAtom<Boolean>(value){
+    override fun eval(ctx:KoKoContext) = KoKoBoolValue(value)
+}

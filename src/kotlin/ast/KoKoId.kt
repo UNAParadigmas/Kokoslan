@@ -12,5 +12,5 @@ import  kokoslan.eval.KoKoContext
 import  kokoslan.eval.KoKoValue
 
 class KoKoId (value: String ): KoKoAtom<String>(value){
-   fun eval(ctx: KoKoContext) = ctx.find(this)
+   override fun eval(ctx: KoKoContext) = ctx.find(this)
 }

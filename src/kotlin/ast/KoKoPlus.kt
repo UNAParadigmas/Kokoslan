@@ -2,12 +2,13 @@
   @author Denis Rodriguez Viquez
           Luis Vasquez Quiros
           Walter Chavez Oviedo
-          Manuel Masis Segura
   @since 2017
 */
-package kokoslan.ast;
-import java.util.*;
-import java.io.*;
+package kokoslan.ast
+import java.util.*
+import java.io.*
+import kokoslan.eval.*
+import kokoslan.exception.*
 
 
 open class KoKoPLUS (oper: KoKoAst, left: KoKoAst, right: KoKoAst) : KoKoBiOperation (oper, left, right) {

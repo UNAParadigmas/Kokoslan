@@ -2,12 +2,12 @@
   @author Denis Rodriguez Viquez
           Luis Vasquez Quiros
           Walter Chavez Oviedo
-          Manuel Masis Segura
   @since 2017
 */
 package kokoslan.ast
 import java.util.*
 import java.io.*
+import kokoslan.eval.*
 
 class KoKoList(val list : List<KoKoAst> = ArrayList<KoKoAst>()) : ArrayList<KoKoAst>(list), KoKoAst {
 	

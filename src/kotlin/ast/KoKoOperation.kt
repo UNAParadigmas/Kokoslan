@@ -8,12 +8,14 @@
 package kokoslan.ast
 import java.util.*
 import java.io.*
+import kokoslan.eval.*
+import kokoslan.exception.*
 
 open class KoKoOperation (val _operator: KoKoAst, val operands: MutableList<KoKoAst> = mutableListOf<KoKoAst>()) : KoKoAst {
     
-    fun addOperand( x: KoKoAst ) = this.operands.add(x)
+    open fun addOperand( x: KoKoAst ) = this.operands.add(x)
 
-    override fun genCode(out: PrintStream){
+    open override fun genCode(out: PrintStream){
 	    this.operands.first().genCode(out)
         this.operands
             .drop(1)
@@ -23,7 +25,7 @@ open class KoKoOperation (val _operator: KoKoAst, val operands: MutableList<KoKo
 			}
     }
 
-    override fun eval ( ctx: KoKoContext ) : KoKoValue{
+    open override fun eval ( ctx: KoKoContext ) : KoKoValue{
 	    throw KoKoEvalException("KoKoOperation: eval not implemented")   
     }   
 }

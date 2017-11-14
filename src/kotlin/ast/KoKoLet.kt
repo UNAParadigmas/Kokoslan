@@ -2,11 +2,11 @@
   @author Denis Rodriguez Viquez
           Luis Vasquez Quiros
           Walter Chavez Oviedo
-          Manuel Masis Segura
   @since 2017
 */
 package kokoslan.ast;
 import java.io.*;
+import kokoslan.eval.*
 
 
 class KoKoLet (val id: KoKoAst, val expr: KoKoAst ): KoKoAst {
