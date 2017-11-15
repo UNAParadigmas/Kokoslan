@@ -53,7 +53,6 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 	}
 	
 	override fun visitParentValueExpr(ctx : KoKoslanParser.ParentValueExprContext) : KoKoAst {
-		println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		return visit(ctx.expression())
 	}
 	
