@@ -11,3 +11,11 @@
 	
 	Expected result: 0.0
 ```	
+### 2) Case Closure:
+```	
+	let y = 666
+	let f = \x. (x + y) 
+	f(555)
+	
+	Expected 555+666 = 1221
+```	
