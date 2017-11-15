@@ -12,12 +12,13 @@ class KoKoProgram(val statements: MutableList<KoKoAst>) : KoKoAst{
 	}
    
     override fun eval(ctx : KoKoContext ) : KoKoValue {
-		var res : KoKoValue
+		var res : KoKoValue? = null
 		this.statements.forEach{
 			res = it.eval(ctx)
 		}
-		res = this.statements[this.statements.size - 1].eval(ctx)
-		return res
+		return res ?: this.statements[this.statements.size - 1].eval(ctx)
+		//res as KoKoValue
+        	
 	}
 	
 	fun eval() = eval(KoKoContext(KoKoContext()))

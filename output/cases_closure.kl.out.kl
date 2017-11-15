@@ -1,2 +1,2 @@
-let y = 
-let f = 
+let f = \x . \y . x + y 
+f (555.0 , 666.0 )
