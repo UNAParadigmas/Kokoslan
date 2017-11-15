@@ -72,27 +72,30 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 	}
 
 	override fun visitAdd_oper(ctx:KoKoslanParser.Add_operContext) = OPERATOR(ctx.oper.getText())
-	
-	override fun visitPar_Oper(ctx: KoKoslanParser.Par_OperContext):KoKoAst OPERATOR(ctx.oper.getText())
+
+    /*override fun visitElvisValueExpr(ctx: KoKoslanParser.ElvisValueExprContext): KoKoAst {
+        return visitChildren(ctx)
+    }*/
 	
 	override fun visitBool_expr(ctx: KoKoslanParser.Bool_exprContext) :KoKoAst {
 		
-		var par = if(ctx.NOT() == null && ctx.NOT().size % 2 == 0) true else false
+		var par = (ctx.NOT() == null && ctx.NOT().size % 2 == 0)
 
 		if(ctx.bool_oper() == null){
-			if(par) return visit(ctx.value_expr()) 
-			return BI_OPERATION(KoKoEmiter.AND, KoKoEmiter.FALSE, visit(ctx.value_expr()) )
+			if(par) return visit(ctx.value_expr(0))
+			return BI_OPERATION(KoKoEmiter.AND, KoKoEmiter.FALSE, visit(ctx.value_expr(0)) )
 		}
 		val operators = ctx.bool_oper().map{ visit(it) }
 		val operands = ctx.value_expr().map{ visit(it) }
+        val r = arrayOf<KoKoAst>(operands[0])
 		( 1 until operands.size ).forEach{
 			r[0] = BI_OPERATION(operators[it - 1], r[0], operands[it] )
 		}
-		if(par) return visit(ctx.value_expr()) 
+		if(par) return r[0]
 		return BI_OPERATION(KoKoEmiter.AND, KoKoEmiter.FALSE, r[0])
 	}
 
-	override fun visitBool_oper(ctx:KoKoslanParser.Add_operContext) = OPERATOR(ctx.oper.getText())
+	override fun visitBool_oper(ctx:KoKoslanParser.Bool_operContext) = OPERATOR(ctx.oper.getText())
 
 	override fun visitParentValueExpr(ctx : KoKoslanParser.ParentValueExprContext) : KoKoAst {
 		return visit(ctx.expression())
@@ -102,8 +105,8 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 	
 	override fun visitNumber(ctx:KoKoslanParser.NumberContext) = NUM(java.lang.Double.valueOf(ctx.NUMBER().getText()))
 	
-	override fun visitBool(ctx:KoKoslanParser.BoolContext){
-		if(ctx.not().size % 2 == 0){
+	override fun visitBool(ctx:KoKoslanParser.BoolContext): KoKoAst{
+		if(ctx.NOT().size % 2 == 0){
 			return if(ctx.TRUE() != null) KoKoEmiter.TRUE else KoKoEmiter.FALSE
 		}
 		return if(ctx.TRUE() != null) KoKoEmiter.FALSE else KoKoEmiter.TRUE
