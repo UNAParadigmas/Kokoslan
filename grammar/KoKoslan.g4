@@ -27,7 +27,7 @@ add_expr          :  mult_expr (add_oper mult_expr)*
 ;
 add_oper          : oper = ('+' | '-')
 ;
-par_Oper           : (('(' bool_expr ')')? | bool_expr) test_expr?
+par_Oper		  : '(' bool_expr ')' test_expr?
 ;
 bool_expr         : NOT* evaluable_expr (bool_oper evaluable_expr)*
 ;
@@ -43,7 +43,7 @@ test_expr         :  '?' expression ':' expression
 value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
                  | value_expr call_args	#callValueExpr
                  | atomic_value 		#AtomicValueExpr
-				         | list_value 			#ListValueExpr
+				 | list_value 			#ListValueExpr
                  | case_value			#CaseValueExpr
 ;
 call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*
