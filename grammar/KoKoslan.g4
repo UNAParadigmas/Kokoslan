@@ -40,7 +40,7 @@ value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
 				         | list_value 			#ListValueExpr
                  | case_value			#CaseValueExpr
 ;
-call_args	:	'(' list_expr? ')'
+call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*
 ;
 atomic_value : id | number | bool 
 ;

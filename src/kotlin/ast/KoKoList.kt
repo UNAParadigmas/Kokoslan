@@ -21,7 +21,7 @@ class KoKoList:ArrayList<KoKoAst>, KoKoAst {
 		val res = KoKoListValue()
 		println("Entre aquí")
 		this.forEach{
-			res.add(it.eval(ctx))
+			res.list.add(it.eval(ctx))
 		}
 		return res
 	}

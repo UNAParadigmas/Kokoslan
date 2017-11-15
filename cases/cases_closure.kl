@@ -1,9 +1,7 @@
 
-let y = 666
 
-let f = \x. (x + y) 
+let f = \x. \y. (x + y) 
 
-f(555)
+f(555)(666)
 
 // expected 555+666 = 1221
-

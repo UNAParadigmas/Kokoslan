@@ -14,9 +14,10 @@ class KoKoCall(var head:KoKoAst, var args:KoKoList = KoKoList(Arrays.asList())) 
 	}
 	
 	override fun eval(ctx : KoKoContext) : KoKoValue{
+		args.forEach{println("ARG "+it)}
 		val lambda_ast = ctx.find(KoKoId(head.toString())) as KoKoLambdaValue
 		val lambda = lambda_ast.value as KoKoLambda
-		val evaluacion = lambda.eval(args[ args.size -1 ] as KoKoNum)
+		val evaluacion = lambda.eval(args)
 		return evaluacion
 	}
 }

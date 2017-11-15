@@ -5,7 +5,5 @@ package kokoslan.kotlin.ast;
 import java.util.*;
 import java.io.*;
 
-class KoKoListValue:ArrayList<KoKoValue>, KoKoValue {
-  constructor(list:List<KoKoValue>) : super(list) {}
-  constructor() : super() {}
+class KoKoListValue(var list:MutableList<KoKoValue> = mutableListOf()):ArrayList<KoKoValue>(list), KoKoValue {
 }

@@ -109,7 +109,11 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 	
 	override fun visitCall_args(ctx:KoKoslanParser.Call_argsContext):KoKoAst {
 		println("SOY CALL_ARGS")
-		return if (ctx.list_expr() != null) visit(ctx.list_expr()) else LIST()
+		if (ctx.list_expr() != null){
+			var args = ctx.list_expr().map{i -> visit(i)}
+			return LIST(args) 
+		}else 
+			return LIST()
 	}
   
 	override fun visitList_expr(ctx:KoKoslanParser.List_exprContext):KoKoAst {
