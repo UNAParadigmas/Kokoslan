@@ -77,18 +77,18 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 	
 	override fun visitBool_expr(ctx: KoKoslanParser.Bool_exprContext) :KoKoAst {
 		
-		var impar = if(ctx.NOT() == null && ctx.NOT().size % 2 == 0) true else false
+		var par = if(ctx.NOT() == null && ctx.NOT().size % 2 == 0) true else false
 
 		if(ctx.bool_oper() == null){
-			if(impar) return visit(ctx.expression()) 
-			return BI_OPERATION(KoKoEmiter.AND, KoKoEmiter.FALSE, visit(ctx.expression()) )
+			if(par) return visit(ctx.value_expr()) 
+			return BI_OPERATION(KoKoEmiter.AND, KoKoEmiter.FALSE, visit(ctx.value_expr()) )
 		}
 		val operators = ctx.bool_oper().map{ visit(it) }
-		val operands = ctx.expression().map{ visit(it) }
+		val operands = ctx.value_expr().map{ visit(it) }
 		( 1 until operands.size ).forEach{
 			r[0] = BI_OPERATION(operators[it - 1], r[0], operands[it] )
 		}
-		if(impar) return visit(ctx.expression()) 
+		if(par) return visit(ctx.value_expr()) 
 		return BI_OPERATION(KoKoEmiter.AND, KoKoEmiter.FALSE, r[0])
 	}
 
