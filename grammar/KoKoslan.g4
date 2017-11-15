@@ -21,11 +21,17 @@ lambda_expr  : '\\' pattern '.' expression
 ;
 print        : PRINT LEFT_PAR expression RIGHT_PAR
 ;
-evaluable_expr    :  add_expr test_expr?
+evaluable_expr    :  add_expr | par_Oper
 ;
 add_expr          :  mult_expr (add_oper mult_expr)*
 ;
-add_oper          : oper=('+' | '-')
+add_oper          : oper = ('+' | '-')
+;
+par_Oper           : (('(' bool_expr ')')? | bool_expr) test_expr?
+;
+bool_expr         : NOT* evaluable_expr (bool_oper evaluable_expr)*
+;
+bool_oper         : oper = (OR | AND | EQS | NEQ | LEQ | GEQ | LS | GS)
 ;
 mult_expr         :  value_expr (mult_oper value_expr)*
 ;
@@ -72,7 +78,7 @@ id : ID
 ;
 number : NUMBER
 ;
-bool : TRUE | FALSE
+bool : NOT* (TRUE | FALSE)
 ;
 
 ////////////////////////////////////////////////////////////////
@@ -112,11 +118,21 @@ NOT : '!'
 ;
 EQ : '='
 ;
+EQS : '=='
+;
 NEQ : '!='
 ;
 LEQ : '<='
 ;
+GEQ : '>='
+;
+LS   : '<'
+;
+GS   : '>'
+;
 OR : '||'
+;
+AND: '&&'
 ;
 TRUE : 'true'
 ;

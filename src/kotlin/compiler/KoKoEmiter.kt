@@ -19,6 +19,9 @@ interface KoKoEmiter {
 			"+" -> return KoKoPLUS(operator, left, right)
 			"-" -> return KoKoMINUS(operator, left, right)
 			"*" -> return KoKoMULT(operator, left, right)
+			"/" -> return KoKoDIV(operator, left, right)
+			"&&"->
+			"||"->
 			else -> return KoKoBiOperation(operator, left, right)
 		}
 	}
@@ -42,5 +45,6 @@ interface KoKoEmiter {
 		val MINUS:KoKoAst = KoKoId("-")
 		val MULT:KoKoAst = KoKoId("*")
 		val ERROR:KoKoAst = KoKoId("??")
+		val AND:KoKoAst = KoKoId("&&")
 	}
 }

@@ -10,14 +10,16 @@ open class KoKoBiOperation(operator:KoKoAst, left:KoKoAst, right:KoKoAst):KoKoOp
 	override fun eval(ctx:KoKoContext):KoKoValue {
 		try {
 			val operId = operator as KoKoId
-			val lv = (left().eval(ctx)) as KoKoNumValue
-			val rv = (right().eval(ctx)) as KoKoNumValue
+			val lv = (left().eval(ctx))
+			val rv = (right().eval(ctx))
 			when (operId.value) {
-				"+" -> return KoKoNumValue(lv.value + rv.value)
-				"-" -> return KoKoNumValue(lv.value - rv.value)
-				"*" -> return KoKoNumValue(lv.value * rv.value)
-				"/" -> return KoKoNumValue(lv.value / rv.value)
-				else -> throw KoKoEvalException("KoKoBiOperation: unimpemented operator")
+				"+" -> return KoKoNumValue((lv as KoKoNumValue).value + (rv as KoKoNumValue).value)
+				"-" -> return KoKoNumValue((lv as KoKoNumValue).value - (rv as KoKoNumValue).value)
+				"*" -> return KoKoNumValue((lv as KoKoNumValue).value * (rv as KoKoNumValue).value)
+				"/" -> return KoKoNumValue((lv as KoKoNumValue).value / (rv as KoKoNumValue).value)
+				"&&"-> return KoKoBoolValue((lv as KoKoBoolValue).value && (rv as KoKoBoolValue).value)
+				"||"-> return KoKoBoolValue((lv as KoKoBoolValue).value || (rv as KoKoBoolValue).value)
+				else -> throw KoKoEvalException("KoKoBiOperation-> unimpemented operator")
 			}
 		}
 		catch (e:Exception) {
