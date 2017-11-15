@@ -15,11 +15,9 @@ definition   : 'let' id '=' expression
 ;
 expression   : part_expr (',' part_expr)*
 ;
-part_expr    :  lambda_expr | evaluable_expr | print
+part_expr    :  lambda_expr | evaluable_expr
 ;
 lambda_expr  : '\\' pattern '.' expression
-;
-print        : PRINT LEFT_PAR expression RIGHT_PAR
 ;
 evaluable_expr    :  add_expr | bool_oper
 ;
@@ -39,11 +37,13 @@ test_expr         :  '?' expression ':' expression
 ;
 // Value Expressions
 value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
+                 | 'print(' expression ')'        #PrintValue
                  | value_expr call_args	          #callValueExpr
                  | elvis_expr                     #elvisValueExpr
                  | atomic_value 		              #AtomicValueExpr
 				         | list_value 			              #ListValueExpr
                  | case_value			                #CaseValueExpr
+                 
 ;
 elvis_expr		      : '(' bool_expr ')' test_expr
 ;

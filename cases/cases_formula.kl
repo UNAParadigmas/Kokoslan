@@ -1,5 +1,5 @@
 let a = 1.0
-let b = -2
-let c = 1
-let x = ((b*b - (4*a)*c) / 2*a)
-x /*print(x) falta print */
+let b = -2.0
+let c = 1.0
+let x = ((-b - (4.0*a)*c) / (2.0*a))
+print(x) 

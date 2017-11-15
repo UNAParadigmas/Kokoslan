@@ -41,12 +41,6 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLambda_expr(KoKoslanParser.Lambda_exprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link KoKoslanParser#print}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPrint(KoKoslanParser.PrintContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link KoKoslanParser#evaluable_expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -115,6 +109,13 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCallValueExpr(KoKoslanParser.CallValueExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PrintValue}
+	 * labeled alternative in {@link KoKoslanParser#value_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintValue(KoKoslanParser.PrintValueContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ListValueExpr}
 	 * labeled alternative in {@link KoKoslanParser#value_expr}.
