@@ -21,15 +21,13 @@ lambda_expr  : '\\' pattern '.' expression
 ;
 print        : PRINT LEFT_PAR expression RIGHT_PAR
 ;
-evaluable_expr    :  add_expr | par_Oper
+evaluable_expr    :  add_expr | bool_oper
 ;
 add_expr          :  mult_expr (add_oper mult_expr)*
 ;
 add_oper          : oper = ('+' | '-')
 ;
-par_Oper		  : '(' bool_expr ')' test_expr?
-;
-bool_expr         : NOT* evaluable_expr (bool_oper evaluable_expr)*
+bool_expr         : NOT* value_expr (bool_oper value_expr)*
 ;
 bool_oper         : oper = (OR | AND | EQS | NEQ | LEQ | GEQ | LS | GS)
 ;
@@ -41,10 +39,13 @@ test_expr         :  '?' expression ':' expression
 ;
 // Value Expressions
 value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
-                 | value_expr call_args	#callValueExpr
-                 | atomic_value 		#AtomicValueExpr
-				 | list_value 			#ListValueExpr
-                 | case_value			#CaseValueExpr
+                 | value_expr call_args	          #callValueExpr
+                 | elvis_expr                     #elvisValueExpr
+                 | atomic_value 		              #AtomicValueExpr
+				         | list_value 			              #ListValueExpr
+                 | case_value			                #CaseValueExpr
+;
+elvis_expr		      : '(' bool_expr ')' test_expr
 ;
 call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*
 ;

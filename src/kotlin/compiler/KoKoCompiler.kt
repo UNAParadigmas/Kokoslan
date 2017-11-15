@@ -73,6 +73,8 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 
 	override fun visitAdd_oper(ctx:KoKoslanParser.Add_operContext) = OPERATOR(ctx.oper.getText())
 	
+	override fun visitPar_Oper(ctx: KoKoslanParser.Par_OperContext):KoKoAst OPERATOR(ctx.oper.getText())
+	
 	override fun visitBool_expr(ctx: KoKoslanParser.Bool_exprContext) :KoKoAst {
 		
 		var impar = if(ctx.NOT() == null && ctx.NOT().size % 2 == 0) true else false
