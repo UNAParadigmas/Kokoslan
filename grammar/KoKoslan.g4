@@ -15,11 +15,11 @@ definition   : 'let' id '=' expression
 ;
 expression   : part_expr (',' part_expr)*
 ;
-part_expr    :  lambda_expr | evaluable_expr 
+part_expr    :  lambda_expr | evaluable_expr | print
 ;
 lambda_expr  : '\\' pattern '.' expression
 ;
-parentesis_expr : LEFT_PAR evaluable_expr RIGHT_PAR
+print        : PRINT LEFT_PAR expression RIGHT_PAR
 ;
 evaluable_expr    :  add_expr test_expr?
 ;
@@ -37,7 +37,7 @@ test_expr         :  '?' expression ':' expression
 value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
                  | value_expr call_args	#callValueExpr
                  | atomic_value 		#AtomicValueExpr
-				 | list_value 			#ListValueExpr
+				         | list_value 			#ListValueExpr
                  | case_value			#CaseValueExpr
 ;
 call_args	:	'(' list_expr? ')'
@@ -131,6 +131,8 @@ ADD :   '+'
 SUB :   '-' 
 ;
 ID : [a-zA-Z][a-zA-Z_0-9]* 
+;
+PRINT: 'print'
 ;
 ////////////////////////////////////////////////
 // Ignored tokens

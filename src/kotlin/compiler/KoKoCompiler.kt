@@ -52,10 +52,10 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 		return LET(id, expr)
 	}
 	
-	/* override fun visitParentesis_expr(ctx : KoKoslanParser.Parentesis_exprContext) : KoKoAst {
-		println("PARENTESIS "+ ctx)
-		return OPERATOR("+")
-	} */
+	override fun visitParentValueExpr(ctx : KoKoslanParser.ParentValueExprContext) : KoKoAst {
+		println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		return visit(ctx.expression())
+	}
 	
 	override fun visitAdd_oper(ctx:KoKoslanParser.Add_operContext) = OPERATOR(ctx.oper.getText())
 	
@@ -84,19 +84,18 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 	}
   
 	override fun visitMult_expr(ctx:KoKoslanParser.Mult_exprContext):KoKoAst {
+		println("VISIT_MULT_EXPRESSION")
 		if (ctx.mult_oper() == null){
-			println("CTX = $ctx")
+			println("SOLO UNO")
 			return visit(ctx.value_expr(0))
 		}
-		println("CTX = $ctx")
+		println("MAS")
 		val operators = ctx.mult_oper().map{ visit(it) }
-		println("Mi Contexto = ${ctx.value_expr()}")
 		ctx.value_expr().forEach{ println(it) }
 		val operands = ctx.value_expr().map{ visit(it) }
 		println("OPERANDS = $operands")
 		
 		if(operands[0]==null){
-			println("CTX2 = $ctx")
 			println(ctx.value_expr(0))
 			return visit(ctx.value_expr(0));
 			}

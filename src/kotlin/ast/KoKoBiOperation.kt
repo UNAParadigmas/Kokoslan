@@ -16,6 +16,7 @@ open class KoKoBiOperation(operator:KoKoAst, left:KoKoAst, right:KoKoAst):KoKoOp
 				"+" -> return KoKoNumValue(lv.value + rv.value)
 				"-" -> return KoKoNumValue(lv.value - rv.value)
 				"*" -> return KoKoNumValue(lv.value * rv.value)
+				"/" -> return KoKoNumValue(lv.value / rv.value)
 				else -> throw KoKoEvalException("KoKoBiOperation: unimpemented operator")
 			}
 		}
