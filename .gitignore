@@ -4,6 +4,9 @@
 classes/kokoslan/*
 classes/META-INF/*
 
+output/*.kl
+
+
 ### Java ###
 # Compiled class file
 *.class

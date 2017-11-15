@@ -53,7 +53,6 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 	}
 	
 	override fun visitParentValueExpr(ctx : KoKoslanParser.ParentValueExprContext) : KoKoAst {
-		println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		return visit(ctx.expression())
 	}
 	
@@ -86,17 +85,12 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 	override fun visitMult_expr(ctx:KoKoslanParser.Mult_exprContext):KoKoAst {
 		println("VISIT_MULT_EXPRESSION")
 		if (ctx.mult_oper() == null){
-			println("SOLO UNO")
 			return visit(ctx.value_expr(0))
 		}
-		println("MAS")
 		val operators = ctx.mult_oper().map{ visit(it) }
-		ctx.value_expr().forEach{ println(it) }
 		val operands = ctx.value_expr().map{ visit(it) }
-		println("OPERANDS = $operands")
 		
 		if(operands[0]==null){
-			println(ctx.value_expr(0))
 			return visit(ctx.value_expr(0));
 			}
 		else{ 
