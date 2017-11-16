@@ -178,12 +178,21 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         return FAIL()
     }
 
-    /*override fun visitListFirst(ctx: KoKoslanParser.ListFirstContext):KoKoAst {
-        throw Exception("first")
+    override fun  visitCons(ctx: KoKoslanParser.ConsContext) :KoKoAst {
+        var a = mutableListOf<KoKoAst>()
+        ctx.expression().forEach{ it.part_expr().map{ visit(it) }.forEach{a.add(it)} }
+        return KoKoCons(a)
     }
 
-    override fun visitListRest(ctx: KoKoslanParser.ListRestContext):KoKoAst {
-        throw Exception("rest")
-    }*/
+    override fun visitRest(ctx: KoKoslanParser.RestContext) : KoKoAst {
+        var a = mutableListOf<KoKoAst>()
+        ctx.expression().part_expr().map{ visit(it) }.forEach{a.add(it)}
+        return KoKoRest(a)
+    }
 
+    override fun visitFirst(ctx: KoKoslanParser.FirstContext) : KoKoAst { 
+        var a = mutableListOf<KoKoAst>()
+        ctx.expression().part_expr().map{ visit(it) }.forEach{a.add(it)}
+        return KoKoFirst(a)
+    }
 }

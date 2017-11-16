@@ -44,8 +44,16 @@ value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
                  | atomic_value 		              #AtomicValueExpr
 				         | list_value 			              #ListValueExpr
                  | case_value			                #CaseValueExpr
-				 | 'fail()' 			#FailValue
-                 
+				         | 'fail()' 			                #FailValue 
+                 | primitive                      #PrimitiveExpr                
+;
+primitive   :  cons | rest | first |
+;
+cons        : 'cons('expression')('expression')'
+;
+rest        : 'rest('expression')'
+;
+first       : 'first('expression')'
 ;
 call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*
 ;
