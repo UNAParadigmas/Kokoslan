@@ -20,7 +20,7 @@ fun main(args:Array<String>) {
 		println(">>> $VERSION  <<<")
 		println("...............................................\n")
 	// Get parameters
-		var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\middle\\cases_recursive_dec.kl"
+		var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\middle\\cases_cdr_list_pat.kl"
     	//var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\cases_max.kl"
 		var outputFile:String? = null
 		

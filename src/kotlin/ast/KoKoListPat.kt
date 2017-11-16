@@ -3,31 +3,36 @@ package kokoslan.ast
 import kokoslan.kotlin.ast.*
 import java.io.PrintStream
 
-data class KoKoListPat(var pattern: KoKoAst, var patt_ctx : KoKoContext = KoKoContext(null)) : KoKoAst {
+class KoKoListPat(var pattern: MutableList<KoKoAst>) : KoKoAst {
 
-	override fun genCode(out: PrintStream){
-		out.print("\\")
-		this.pattern.genCode(out)
-		out.print(". ")
-		this.expr.genCode(out)
-	}
+    override fun genCode(out : PrintStream){
+        if( this.pattern.size == 0 ) return
 
-	override fun eval(ctx : KoKoContext) : KoKoValue {
-		this.lambda_ctx = KoKoContext(ctx)
-		this.lambda_ctx.assoc(KoKoId("#KoKo"), KoKoNullValue(pattern.toString()))
-		return KoKoLambdaValue(this)
-		val variable = this.lambda_ctx.find(KoKoId("#KoKo")) as KoKoNullValue
-		this.lambda_ctx.assoc(KoKoId(variable.value ?: ""), (valor[0].eval(lambda_ctx) as KoKoListValue).list[0])
-		if(valor.size>1){
-			val lamda_Hija = this.expr.eval(lambda_ctx) as KoKoLambdaValue
-			val lamda = lamda_Hija.value as KoKoListPat
-			if(valor.size==1)
-				return lamda.expr.eval(lambda_ctx)
-			valor.removeAt(0)
-			if(valor.size==0)
-				return this.expr.eval(lambda_ctx)
-			return lamda.eval(valor)
-		}
-		return this.expr.eval(lambda_ctx)
+        this.pattern[0].genCode(out)
+        (1 until this.pattern.size).forEach{
+            out.print(", ")
+            this.pattern[it].genCode(out)
+        }
+    }
+
+    override fun eval(ctx: KoKoContext): KoKoValue {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+	fun eval(ctx : KoKoContext, valor: KoKoListValue, last: Boolean):KoKoContext {
+		val ids = pattern.filter { it is KoKoId }
+        if(last && pattern.size==1){
+            ctx.assoc(ids[0] as KoKoId, valor)
+            return ctx
+        }
+        if(ids.size>1)
+		    (1..ids.size).forEach{ctx.assoc(ids[it] as KoKoId, valor[it])}
+        else
+            ctx.assoc(ids[0] as KoKoId, valor[0])
+		val rest = pattern.filter { it is KoKoListPat }[0] as KoKoListPat
+		val next = valor.subList(ids.size, valor.size)
+        if(next.size==0)
+            return ctx
+		return rest.eval(ctx, KoKoListValue(next), true)
 	}
 }
