@@ -178,6 +178,29 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         return FAIL()
     }
 
+	override fun visitList_pat(ctx: KoKoslanParser.List_patContext): KoKoAst { 
+		
+        if (ctx.list_body_pat() == null)
+            return LIST()
+        else {
+            visitChildren(ctx)
+        }
+    
+	}
+
+	override fun visitList_body_pat(ctx: KoKoslanParser.List_body_patContext): KoKoAst {
+		val l = ArrayList<KoKoAst>()
+        val patterns = visit(ctx.pattern()[0])
+        l.add(args)
+
+        if (ctx.rest_body_pat() != null) {
+            l.add(visit(ctx.rest_body_pat()))
+        }
+        return LIST(l)
+	}
+
+	override fun visitRest_body_pat(ctx: KoKoslanParser.Rest_body_patContext) = visitChildren()	
+
     /*override fun visitListFirst(ctx: KoKoslanParser.ListFirstContext):KoKoAst {
         throw Exception("first")
     }
