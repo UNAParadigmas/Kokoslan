@@ -1,6 +1,14 @@
+/*
+  @author Denis Rodriguez Viquez
+          Luis Vasquez Quiros
+          Walter Chavez Oviedo
+  @since 2017
+*/
 package kokoslan.kotlin.compile;
 
 import kokoslan.ast.KoKoElvis
+import kokoslan.ast.KoKoListPat
+import kokoslan.ast.KoKoListRest
 import kokoslan.kotlin.ast.*;
 import java.util.*;
 
@@ -44,10 +52,14 @@ interface KoKoEmiter {
 	fun LIST(expressions:List<KoKoAst>) = KoKoList(expressions)
   
 	fun LIST():KoKoList = KoKoList()
+
+	fun LISTREST(valor:List<KoKoAst>):KoKoListPat= KoKoListPat(valor as MutableList<KoKoAst>)
   
 	fun CALL(head:KoKoAst, args:KoKoList) = KoKoCall(head, args)
 
     fun LISTExp(expressions:List<KoKoAst>) = KoKoArrayList(expressions)
+
+    fun LISTExp(): KoKoArrayList = KoKoArrayList()
 
     fun ELVIS(operator: KoKoAst, operands: MutableList<KoKoAst>) = KoKoElvis(operator, operands)
 

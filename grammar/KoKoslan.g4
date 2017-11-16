@@ -56,6 +56,8 @@ rest        : 'rest('expression')'
 first       : 'first('expression')'
 ;
 length      : 'length('expression')'
+				 | 'fail()' 			#FailValue
+				 | list_pat				#ListPattern
 ;
 call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*
 ;
