@@ -65,6 +65,12 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBool_expr(KoKoslanParser.Bool_exprContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link KoKoslanParser#bool_Not_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBool_Not_expr(KoKoslanParser.Bool_Not_exprContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link KoKoslanParser#bool_oper}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -95,13 +101,6 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitParentValueExpr(KoKoslanParser.ParentValueExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code elvisValueExpr}
-	 * labeled alternative in {@link KoKoslanParser#value_expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitElvisValueExpr(KoKoslanParser.ElvisValueExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code callValueExpr}
 	 * labeled alternative in {@link KoKoslanParser#value_expr}.
@@ -137,12 +136,6 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAtomicValueExpr(KoKoslanParser.AtomicValueExprContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link KoKoslanParser#elvis_expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitElvis_expr(KoKoslanParser.Elvis_exprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link KoKoslanParser#call_args}.
 	 * @param ctx the parse tree

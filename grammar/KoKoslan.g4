@@ -15,17 +15,19 @@ definition   : 'let' id '=' expression
 ;
 expression   : part_expr (',' part_expr)*
 ;
-part_expr    :  lambda_expr | evaluable_expr
+part_expr    :  lambda_expr | evaluable_expr 
 ;
-lambda_expr  : '\\' pattern '.' expression
+lambda_expr  : '\\' pattern '.' expression 
 ;
-evaluable_expr    :  add_expr | bool_oper
+evaluable_expr    :  add_expr | (bool_expr test_expr?)
 ;
 add_expr          :  mult_expr (add_oper mult_expr)*
 ;
 add_oper          : oper = ('+' | '-')
 ;
-bool_expr         : NOT* value_expr (bool_oper value_expr)*
+bool_expr         : bool_Not_expr (bool_oper bool_Not_expr)*
+;
+bool_Not_expr	  : NOT*value_expr
 ;
 bool_oper         : oper = (OR | AND | EQS | NEQ | LEQ | GEQ | LS | GS)
 ;
@@ -39,13 +41,10 @@ test_expr         :  '?' expression ':' expression
 value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
                  | 'print(' expression ')'        #PrintValue
                  | value_expr call_args	          #callValueExpr
-                 | elvis_expr                     #elvisValueExpr
                  | atomic_value 		              #AtomicValueExpr
 				         | list_value 			              #ListValueExpr
                  | case_value			                #CaseValueExpr
                  
-;
-elvis_expr		      : '(' bool_expr ')' test_expr
 ;
 call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*
 ;
