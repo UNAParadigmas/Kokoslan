@@ -17,8 +17,6 @@ class KoKoProgram(val statements: MutableList<KoKoAst>) : KoKoAst{
 			res = it.eval(ctx)
 		}
 		return res ?: this.statements[this.statements.size - 1].eval(ctx)
-		//res as KoKoValue
-        	
 	}
 	
 	fun eval() = eval(KoKoContext(KoKoContext()))

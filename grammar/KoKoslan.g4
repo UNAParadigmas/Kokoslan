@@ -45,6 +45,7 @@ value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
 				         | list_value 			              #ListValueExpr
                  | case_value			                #CaseValueExpr
 				 | 'fail()' 			#FailValue
+				 | list_pat				#ListPattern
                  
 ;
 call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*

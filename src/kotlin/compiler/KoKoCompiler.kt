@@ -164,9 +164,7 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
     }
 
     override fun visitListValueExpr(ctx: KoKoslanParser.ListValueExprContext):KoKoAst {
-        if(ctx.list_value().list_expr() != null)
             return visit(ctx.list_value())
-        else return visit(ctx.list_value())
     }
 
     override fun visitList_value(ctx: KoKoslanParser.List_valueContext):KoKoAst {
@@ -178,28 +176,30 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         return FAIL()
     }
 
-	override fun visitList_pat(ctx: KoKoslanParser.List_patContext): KoKoAst { 
-		
-        if (ctx.list_body_pat() == null)
-            return LIST()
-        else {
-            visitChildren(ctx)
+	override fun visitList_pat(ctx: KoKoslanParser.List_patContext): KoKoAst {
+        if(ctx.list_body_pat()!=null) {
+            val expressions = visit(ctx.list_body_pat()) as MutableList<KoKoAst>
+            if (!expressions.isEmpty())
+                return LIST(expressions)
         }
-    
+        return LIST()
 	}
 
-	override fun visitList_body_pat(ctx: KoKoslanParser.List_body_patContext): KoKoAst {
-		val l = ArrayList<KoKoAst>()
-        val patterns = visit(ctx.pattern()[0])
-        l.add(args)
+    override fun visitListPattern(ctx: KoKoslanParser.ListPatternContext): KoKoAst {
+        return visit(ctx.list_pat())
+    }
 
-        if (ctx.rest_body_pat() != null) {
+	override fun visitList_body_pat(ctx: KoKoslanParser.List_body_patContext): KoKoAst {
+        var l = mutableListOf<KoKoAst>()
+        ctx.pattern().forEach { l.add(visit(it)) }
+        if(ctx.rest_body_pat()!=null)
             l.add(visit(ctx.rest_body_pat()))
-        }
         return LIST(l)
 	}
 
-	override fun visitRest_body_pat(ctx: KoKoslanParser.Rest_body_patContext) = visitChildren()	
+	override fun visitRest_body_pat(ctx: KoKoslanParser.Rest_body_patContext): KoKoAst{
+        return visit(ctx.id()) ?: visit(ctx.list_pat())
+    }
 
     /*override fun visitListFirst(ctx: KoKoslanParser.ListFirstContext):KoKoAst {
         throw Exception("first")
