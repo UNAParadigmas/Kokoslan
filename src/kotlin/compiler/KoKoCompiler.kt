@@ -136,6 +136,8 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 		val args = visit(ctx.call_args()) as KoKoList
 		return CALL(head, args)
 	}
+
+	override fun visitPrintValue(ctx: KoKoslanParser.PrintValueContext) = PRINT(visit(ctx.expression()))
 	
 	override fun visitCall_args(ctx:KoKoslanParser.Call_argsContext):KoKoAst {
 		if (ctx.list_expr() != null){

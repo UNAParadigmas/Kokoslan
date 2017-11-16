@@ -9,6 +9,8 @@ interface KoKoEmiter {
 	
 	fun LET(id:KoKoAst, expr:KoKoAst) = KoKoLet(id, expr)
   
+	fun PRINT(expr: KoKoAst) = KoKoPrint(expr)
+
 	fun OPERATOR(operator:String) = KoKoId(operator)
 	
 	fun OPERATION(operator:KoKoAst, operands:MutableList<KoKoAst>) = KoKoOperation(operator, operands)
