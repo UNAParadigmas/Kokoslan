@@ -6,6 +6,7 @@
 */
 package kokoslan.kotlin.compile;
 
+import kokoslan.ast.KoKoElvis
 import kokoslan.kotlin.ast.*;
 import java.util.*;
 
@@ -14,14 +15,15 @@ interface KoKoEmiter {
 	fun PROGRAM(stmts:MutableList<KoKoAst>) = KoKoProgram(stmts)
 	
 	fun LET(id:KoKoAst, expr:KoKoAst) = KoKoLet(id, expr)
-  
-	fun PRINT(expr: KoKoAst) = KoKoPrint(expr)
 
+    fun PRINT(expr: KoKoAst) = KoKoPrint(expr)
+  
 	fun OPERATOR(operator:String) = KoKoId(operator)
 	
-	fun OPERATION(operator:KoKoAst, operands:MutableList<KoKoAst>) = KoKoOperation(operator, operands)
+	fun OPERATION(operator:KoKoAst, operands: MutableList<KoKoAst>) = KoKoOperation(operator, operands)
 	
 	fun BI_OPERATION(operator:KoKoAst, left:KoKoAst, right:KoKoAst):KoKoAst {
+		println(operator)
 		val id = operator as KoKoId
 		when (id.value) {
 			"+"  -> return KoKoPLUS	(operator, left, right)
@@ -55,9 +57,11 @@ interface KoKoEmiter {
 	fun FAIL() = KoKoFail()
 	
 	fun CALL(head:KoKoAst, args:KoKoList) = KoKoCall(head, args)
-	
-	fun LAMBDA(pattern : KoKoAst, expression : KoKoAst) = KoKoLambda(pattern, expression)
-  
+
+    fun ELVIS(operator: KoKoAst, operands: MutableList<KoKoAst>) = KoKoElvis(operator, operands)
+
+    fun LAMBDA(pattern : KoKoAst, expression : KoKoAst) = KoKoLambda(pattern, expression)
+
 	companion object {
 		val TRUE = KoKoBool(true)
 		val FALSE = KoKoBool(false)

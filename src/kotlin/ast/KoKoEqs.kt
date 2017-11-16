@@ -17,8 +17,8 @@ class KoKoEQS(operator : KoKoAst, left : KoKoAst, right : KoKoAst) : KoKoBiOpera
 		    val lv = left().eval(ctx)
 			val rv = right().eval(ctx)
 	        if(lv is KoKoNumValue)
-     			return KoKoBoolValue((lv as KoKoNumValue).value != (rv as KoKoNumValue).value)
-     		return KoKoBoolValue((lv as KoKoBoolValue).value != (rv as KoKoBoolValue).value)
+     			return KoKoBoolValue((lv as KoKoNumValue).value == (rv as KoKoNumValue).value)
+     		return KoKoBoolValue((lv as KoKoBoolValue).value == (rv as KoKoBoolValue).value)
 	   } catch ( e : Exception ) {
 			throw KoKoEvalException("${e.message}")
 	   }

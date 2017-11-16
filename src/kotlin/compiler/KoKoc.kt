@@ -20,7 +20,9 @@ fun main(args:Array<String>) {
 		println(">>> $VERSION  <<<")
 		println("...............................................\n")
 	// Get parameters
-		var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\cases_formula_lambda.kl"
+
+		var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\cases_max.kl"
+
 		var outputFile:String? = null
 		
 		if (args.size > 0)
