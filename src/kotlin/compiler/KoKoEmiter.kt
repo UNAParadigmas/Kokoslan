@@ -19,7 +19,6 @@ interface KoKoEmiter {
 	fun OPERATION(operator:KoKoAst, operands: MutableList<KoKoAst>) = KoKoOperation(operator, operands)
 	
 	fun BI_OPERATION(operator:KoKoAst, left:KoKoAst, right:KoKoAst):KoKoAst {
-		println(operator)
 		val id = operator as KoKoId
 		when (id.value) {
 			"+"  -> return KoKoPLUS	(operator, left, right)
