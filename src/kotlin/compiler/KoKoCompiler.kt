@@ -158,22 +158,20 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 	}
   
 	override fun visitList_expr(ctx:KoKoslanParser.List_exprContext):KoKoAst {
+        print(ctx.expression().size)
 		val exprs = ctx.expression().map{ visit(it) }
         return LIST(exprs)
 	}
 
 	override fun visitListValueExpr(ctx: KoKoslanParser.ListValueExprContext):KoKoAst { 
 		if(ctx.list_value().list_expr() != null)
-			return visit(ctx.list_value().list_expr())
+			return visit(ctx.list_value())
 		else return visit(ctx.list_value())
 	}
 
 	override fun visitList_value(ctx: KoKoslanParser.List_valueContext):KoKoAst {
-			if (ctx.list_expr() != null){
-				val expressions = ctx.list_expr().expression().map({ visit(it) })
-				return LISTExp(expressions) 
-			}else 
-				return LISTExp()
+		val expressions = ctx.list_expr().expression().get(0).part_expr().map{ visit(it) }
+		return LISTExp(expressions)
 	 }
 
 	override fun visitListFirst(ctx: KoKoslanParser.ListFirstContext):KoKoAst { 

@@ -55,7 +55,7 @@ call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*
 atomic_value : id | number | bool 
 ;
 // List expressions
-list_value   :  '[' expression? ']'
+list_value   :  '[' list_expr? ']'
 ; 
 list_expr    :  expression ( ','  expression)*
 ;
