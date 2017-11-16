@@ -195,4 +195,11 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         ctx.expression().part_expr().map{ visit(it) }.forEach{a.add(it)}
         return KoKoFirst(a)
     }
+
+    override fun visitLength(ctx: KoKoslanParser.LengthContext) : KoKoAst {
+        ar a = mutableListOf<KoKoAst>()
+        ctx.expression().part_expr().map{ visit(it) }.forEach{a.add(it)}
+        return KoKoFirst(a) 
+    }
+
 }

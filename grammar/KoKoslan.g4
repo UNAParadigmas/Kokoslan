@@ -47,13 +47,15 @@ value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
 				         | 'fail()' 			                #FailValue 
                  | primitive                      #PrimitiveExpr                
 ;
-primitive   :  cons | rest | first |
+primitive   :  cons | rest | first | length
 ;
 cons        : 'cons('expression')('expression')'
 ;
 rest        : 'rest('expression')'
 ;
 first       : 'first('expression')'
+;
+length      : 'length('expression')'
 ;
 call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*
 ;
