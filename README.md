@@ -1,13 +1,17 @@
 # Kokoslan
 
-## Tested Cases:
+Kokoslan es un lenguaje que implementa el cálculo lambda de forma particular
+Los programas son en (archivos de) texto (sufijo .kl).
+Permite definiciones, lambdas, aritmética entera y booleana y listas (tipos de datos correspondientes).
+Opcionalmente permite strings.
+Tiene un print(ln) que es capaz de imprimir cualquier dato) en consola
+Permite pattern-matching en las lambdas
+Permite evaluación eager (por defecto) pero también lazy (opcional)
+El problema de estudio es escribir un parser y un intéprete para Kokoslan, como mínimo
+Eventualmente escribir un compilador que genere Prolog para que corra en esa plataforma
 
-### 1) Case Formula:
-```
-	let a = 1.0
-	let b = -2
-	let c = 1
-	let x = ((b*b - (4*a)*c) / 2*a)
-	
-	Expected result: 0.0
-```	
+## Authors
+
+* **Denis Rodriguez**  - [@vite0150](https://github.com/vite0150)
+* **Luis Vasquez**  - [@luisf96v](https://github.com/luisf96v)
+* **Walter Chaves**  - [@banned007](https://github.com/banned007)

@@ -157,6 +157,13 @@ public class KoKoslanBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitListPattern(KoKoslanParser.ListPatternContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitAtomicValueExpr(KoKoslanParser.AtomicValueExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

@@ -2,8 +2,18 @@ package kokoslan.ast
 
 import kokoslan.exception.KoKoFailException
 import kokoslan.kotlin.ast.*
+import java.io.PrintStream
 
 class KoKoElvis(val operator : KoKoAst, val operands: MutableList<KoKoAst> = mutableListOf()) : KoKoAst {
+
+    override fun genCode(out : PrintStream){
+        operator.genCode(out)
+        out.print("? ")
+        operands[0].genCode(out)
+        out.print(": ")
+        operands[1].genCode(out)
+    }
+
     override fun eval(ctx: KoKoContext): KoKoValue {
         try {
             val oper = operator.eval(ctx) as KoKoBoolValue

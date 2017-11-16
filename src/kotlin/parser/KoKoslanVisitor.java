@@ -137,6 +137,13 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCaseValueExpr(KoKoslanParser.CaseValueExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ListPattern}
+	 * labeled alternative in {@link KoKoslanParser#value_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListPattern(KoKoslanParser.ListPatternContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code AtomicValueExpr}
 	 * labeled alternative in {@link KoKoslanParser#value_expr}.
 	 * @param ctx the parse tree

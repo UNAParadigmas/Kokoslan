@@ -164,9 +164,7 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
     }
 
     override fun visitListValueExpr(ctx: KoKoslanParser.ListValueExprContext):KoKoAst {
-        if(ctx.list_value().list_expr() != null)
             return visit(ctx.list_value())
-        else return visit(ctx.list_value())
     }
 
     override fun visitList_value(ctx: KoKoslanParser.List_valueContext):KoKoAst {
@@ -176,6 +174,31 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 
     override fun visitFailValue(ctx: KoKoslanParser.FailValueContext?): KoKoAst {
         return FAIL()
+    }
+
+	override fun visitList_pat(ctx: KoKoslanParser.List_patContext): KoKoAst {
+        if(ctx.list_body_pat()!=null) {
+            val expressions = visit(ctx.list_body_pat()) as MutableList<KoKoAst>
+            if (!expressions.isEmpty())
+                return LISTExp(expressions)
+        }
+        return LISTExp()
+	}
+
+    override fun visitListPattern(ctx: KoKoslanParser.ListPatternContext): KoKoAst {
+        return visit(ctx.list_pat())
+    }
+
+	override fun visitList_body_pat(ctx: KoKoslanParser.List_body_patContext): KoKoAst {
+        var l = mutableListOf<KoKoAst>()
+        ctx.pattern().forEach { l.add(visit(it)) }
+        if(ctx.rest_body_pat()!=null)
+            l.add(visit(ctx.rest_body_pat()))
+        return LISTExp(l)
+	}
+
+	override fun visitRest_body_pat(ctx: KoKoslanParser.Rest_body_patContext): KoKoAst{
+        return if(ctx.id()!=null) LISTREST(listOf(visit(ctx.id()))) else LISTREST(visit(ctx.list_pat()) as MutableList<KoKoAst>)
     }
 
     /*override fun visitListFirst(ctx: KoKoslanParser.ListFirstContext):KoKoAst {
