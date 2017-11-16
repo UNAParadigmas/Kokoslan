@@ -1,3 +1,9 @@
+/*
+  @author Denis Rodriguez Viquez
+          Luis Vasquez Quiros
+          Walter Chavez Oviedo
+  @since 2017
+*/
 package kokoslan.kotlin.compile;
 
 import org.antlr.v4.runtime.*;
@@ -14,7 +20,9 @@ fun main(args:Array<String>) {
 		println(">>> $VERSION  <<<")
 		println("...............................................\n")
 	// Get parameters
+
 		var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\cases_max.kl"
+
 		var outputFile:String? = null
 		
 		if (args.size > 0)

@@ -17,5 +17,6 @@ class KoKoNOT(var expr: KoKoAst) : KoKoAst {
         expr.genCode(out)
     }
 
-	override fun eval(ctx : KoKoContext): KoKoBoolValue =  KoKoBoolValue(!(expr.eval(ctx) as KoKoBoolValue).value)
+	override fun eval(ctx : KoKoContext): KoKoBoolValue = KoKoBoolValue(!(expr.eval(ctx) as KoKoBoolValue).value)
+
 }

@@ -19,7 +19,6 @@ class KoKoList:ArrayList<KoKoAst>, KoKoAst {
 	
 	override fun eval(ctx : KoKoContext) : KoKoValue {
 		val res = KoKoListValue()
-		println("Entre aquí")
 		this.forEach{
 			res.list.add(it.eval(ctx))
 		}

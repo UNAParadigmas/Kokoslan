@@ -1,3 +1,10 @@
+/*
+  @author Denis Rodriguez Viquez
+          Luis Vasquez Quiros
+          Walter Chavez Oviedo
+  @since 2017
+*/
+
 package kokoslan.kotlin.compile;
 
 import kokoslan.ast.KoKoElvis
@@ -87,7 +94,10 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         }
         return r[0]
     }
+	
+  override fun visitBool_oper(ctx:KoKoslanParser.Bool_operContext) = OPERATOR(ctx.oper.getText())
 
+  
     override fun visitBool_Not_expr(ctx: KoKoslanParser.Bool_Not_exprContext): KoKoAst {
 			val x = visit(ctx.value_expr())
 			val y = KoKoNOT(visit(ctx.value_expr()))
@@ -95,8 +105,7 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
             return r
 
     }
-    override fun visitBool_oper(ctx:KoKoslanParser.Bool_operContext) = OPERATOR(ctx.oper.getText())
-
+    
     override fun visitParentValueExpr(ctx : KoKoslanParser.ParentValueExprContext) : KoKoAst {
         return visit(ctx.expression())
     }
@@ -113,7 +122,7 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 		return visit(ctx.add_expr())
     }
     override fun visitId(ctx:KoKoslanParser.IdContext) = ID(ctx.ID().getText())
-
+  
     override fun visitNumber(ctx:KoKoslanParser.NumberContext) = NUM(java.lang.Double.valueOf(ctx.NUMBER().getText()))
 
     override fun visitBool(ctx:KoKoslanParser.BoolContext): KoKoAst{
@@ -142,14 +151,15 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         }
     }
 
-    override fun visitCallValueExpr(ctx:KoKoslanParser.CallValueExprContext):KoKoAst {
+   override fun visitCallValueExpr(ctx:KoKoslanParser.CallValueExprContext):KoKoAst {
         val head = visit(ctx.value_expr())
         val args = visit(ctx.call_args()) as KoKoList
         return CALL(head, args)
     }
 
     override fun visitPrintValue(ctx: KoKoslanParser.PrintValueContext) = PRINT(visit(ctx.expression()))
-
+ 
+  
     override fun visitCall_args(ctx:KoKoslanParser.Call_argsContext):KoKoAst {
         if (ctx.list_expr() != null){
             var args = ctx.list_expr().map{i -> visit(i)}
@@ -158,10 +168,34 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
             return LIST()
     }
 
-    override fun visitList_expr(ctx:KoKoslanParser.List_exprContext):KoKoAst {
+	override fun visitFailException(ctx: KoKoslanParser.FailExceptionContext) = FAIL()
+
+
+  
+	override fun visitList_expr(ctx:KoKoslanParser.List_exprContext):KoKoAst {
+        print(ctx.expression().size)
+		val exprs = ctx.expression().map{ visit(it) }
+        return LIST(exprs)
+	}
+
+	override fun visitListValueExpr(ctx: KoKoslanParser.ListValueExprContext):KoKoAst { 
+		if(ctx.list_value().list_expr() != null)
+			return visit(ctx.list_value())
+		else return visit(ctx.list_value())
+	}
+
+	override fun visitList_value(ctx: KoKoslanParser.List_valueContext):KoKoAst {
+		val expressions = ctx.list_expr().expression().get(0).part_expr().map{ visit(it) }
+		return LISTExp(expressions)
+	 }
+
+	override fun visitListFirst(ctx: KoKoslanParser.ListFirstContext):KoKoAst { 
+		throw Exception("first")
+	}
+
+	 override fun visitList_expr(ctx:KoKoslanParser.List_exprContext):KoKoAst {
         val exprs = ctx.expression().map{ visit(it) }
         return LIST(exprs)
-    }
-
-
+   }
+	
 }
