@@ -1,2 +1,3 @@
 let x = [666,55]
-x
+let y = length([1,2,3,4,5])
+print(y)

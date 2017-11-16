@@ -176,6 +176,10 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         return FAIL()
     }
 
+    override fun  visitCons(ctx: KoKoslanParser.ConsContext) :KoKoAst {
+        var a = mutableListOf<KoKoAst>()
+        ctx.expression().forEach{ it.part_expr().map{ visit(it) }.forEach{a.add(it)} }
+        return KoKoCons(a)
 	override fun visitList_pat(ctx: KoKoslanParser.List_patContext): KoKoAst {
         if(ctx.list_body_pat()!=null) {
             val expressions = visit(ctx.list_body_pat()) as MutableList<KoKoAst>
@@ -205,8 +209,22 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         throw Exception("first")
     }
 
-    override fun visitListRest(ctx: KoKoslanParser.ListRestContext):KoKoAst {
-        throw Exception("rest")
-    }*/
+    override fun visitRest(ctx: KoKoslanParser.RestContext) : KoKoAst {
+        var a = mutableListOf<KoKoAst>()
+        ctx.expression().part_expr().map{ visit(it) }.forEach{a.add(it)}
+        return KoKoRest(a)
+    }
+
+    override fun visitFirst(ctx: KoKoslanParser.FirstContext) : KoKoAst { 
+        var a = mutableListOf<KoKoAst>()
+        ctx.expression().part_expr().map{ visit(it) }.forEach{a.add(it)}
+        return KoKoFirst(a)
+    }
+
+    override fun visitLength(ctx: KoKoslanParser.LengthContext) : KoKoAst {
+        var a = mutableListOf<KoKoAst>()
+        ctx.expression().part_expr().map{ visit(it) }.forEach{a.add(it)}
+        return KoKoLength(a) 
+    }
 
 }
