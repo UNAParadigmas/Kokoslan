@@ -11,6 +11,8 @@ interface KoKoEmiter {
 	fun LET(id:KoKoAst, expr:KoKoAst) = KoKoLet(id, expr)
 
     fun PRINT(expr: KoKoAst) = KoKoPrint(expr)
+
+	fun FAIL() = KoKoFail()
   
 	fun OPERATOR(operator:String) = KoKoId(operator)
 	
@@ -45,6 +47,8 @@ interface KoKoEmiter {
 	fun LIST():KoKoList = KoKoList()
   
 	fun CALL(head:KoKoAst, args:KoKoList) = KoKoCall(head, args)
+
+    fun LISTExp(expressions:List<KoKoAst>) = KoKoArrayList(expressions)
 
     fun ELVIS(operator: KoKoAst, operands: MutableList<KoKoAst>) = KoKoElvis(operator, operands)
 

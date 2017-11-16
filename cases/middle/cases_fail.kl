@@ -1,2 +1,2 @@
 let isZero = \n. n==0 ? true : fail()
-isZero(1)
+isZero(0)

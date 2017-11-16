@@ -163,5 +163,27 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         return LIST(exprs)
     }
 
+    override fun visitListValueExpr(ctx: KoKoslanParser.ListValueExprContext):KoKoAst {
+        if(ctx.list_value().list_expr() != null)
+            return visit(ctx.list_value())
+        else return visit(ctx.list_value())
+    }
+
+    override fun visitList_value(ctx: KoKoslanParser.List_valueContext):KoKoAst {
+        val expressions = ctx.list_expr().expression().get(0).part_expr().map{ visit(it) }
+        return LISTExp(expressions)
+    }
+
+    override fun visitFailValue(ctx: KoKoslanParser.FailValueContext?): KoKoAst {
+        return FAIL()
+    }
+
+    /*override fun visitListFirst(ctx: KoKoslanParser.ListFirstContext):KoKoAst {
+        throw Exception("first")
+    }
+
+    override fun visitListRest(ctx: KoKoslanParser.ListRestContext):KoKoAst {
+        throw Exception("rest")
+    }*/
 
 }

@@ -16,7 +16,7 @@ class KoKoGS(operator : KoKoAst, left : KoKoAst, right : KoKoAst) : KoKoBiOperat
 	    try {
 		    val lv = (left().eval(ctx) as KoKoNumValue)
 			val rv = (right().eval(ctx) as KoKoNumValue)
-     		return KoKoBoolValue(lv.value <= rv.value)
+     		return KoKoBoolValue(lv.value > rv.value)
 	   } catch ( e : Exception ) {
 			throw KoKoEvalException("${e.message}")
 	   }
