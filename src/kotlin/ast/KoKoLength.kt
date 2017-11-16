@@ -14,10 +14,6 @@ class KoKoLength(val operands: MutableList<KoKoAst>) : KoKoAst {
 	    out.print(")")
    }
 */
-    override fun eval(ctx: KoKoContext): KoKoValue {
-        var vec  = (operands[0].eval(ctx) as KoKoListValue)
-        var vec2 = (operands[1].eval(ctx) as KoKoListValue)
-        vec2.forEach{vec.add(it)}
-        return vec
-    }
+    override fun eval(ctx: KoKoContext): KoKoValue = KoKoNumValue((operands[0].eval(ctx) as KoKoListValue).size * 1.0)
+    
 }

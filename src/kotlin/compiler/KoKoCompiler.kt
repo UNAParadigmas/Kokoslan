@@ -197,9 +197,9 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
     }
 
     override fun visitLength(ctx: KoKoslanParser.LengthContext) : KoKoAst {
-        ar a = mutableListOf<KoKoAst>()
+        var a = mutableListOf<KoKoAst>()
         ctx.expression().part_expr().map{ visit(it) }.forEach{a.add(it)}
-        return KoKoFirst(a) 
+        return KoKoLength(a) 
     }
 
 }
