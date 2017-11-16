@@ -1,3 +1,9 @@
+/*
+  @author Denis Rodriguez Viquez
+          Luis Vasquez Quiros
+          Walter Chavez Oviedo
+  @since 2017
+*/
 package kokoslan.kotlin.compile;
 
 import kokoslan.kotlin.ast.*;
@@ -41,7 +47,13 @@ interface KoKoEmiter {
 	fun LIST(expressions:List<KoKoAst>) = KoKoList(expressions)
   
 	fun LIST():KoKoList = KoKoList()
-  
+
+	fun LISTExp(expressions:List<KoKoAst>) = KoKoArrayList(expressions)
+
+	fun LISTExp():KoKoArrayList = KoKoArrayList()
+
+	fun FAIL() = KoKoFail()
+	
 	fun CALL(head:KoKoAst, args:KoKoList) = KoKoCall(head, args)
 	
 	fun LAMBDA(pattern : KoKoAst, expression : KoKoAst) = KoKoLambda(pattern, expression)

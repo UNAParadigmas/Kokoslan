@@ -117,12 +117,26 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrintValue(KoKoslanParser.PrintValueContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ListFirst}
+	 * labeled alternative in {@link KoKoslanParser#value_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListFirst(KoKoslanParser.ListFirstContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ListValueExpr}
 	 * labeled alternative in {@link KoKoslanParser#value_expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitListValueExpr(KoKoslanParser.ListValueExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ListRest}
+	 * labeled alternative in {@link KoKoslanParser#value_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListRest(KoKoslanParser.ListRestContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code CaseValueExpr}
 	 * labeled alternative in {@link KoKoslanParser#value_expr}.
@@ -137,6 +151,13 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAtomicValueExpr(KoKoslanParser.AtomicValueExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FailException}
+	 * labeled alternative in {@link KoKoslanParser#value_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFailException(KoKoslanParser.FailExceptionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link KoKoslanParser#elvis_expr}.
 	 * @param ctx the parse tree

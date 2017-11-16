@@ -43,6 +43,9 @@ value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
                  | atomic_value 		              #AtomicValueExpr
 				         | list_value 			              #ListValueExpr
                  | case_value			                #CaseValueExpr
+                 | 'fail()'                       #FailException
+                 | 'first(' list_value ')'        #ListFirst
+                 | 'rest(' list_value ')'         #ListRest
                  
 ;
 elvis_expr		      : '(' bool_expr ')' test_expr
@@ -52,11 +55,10 @@ call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*
 atomic_value : id | number | bool 
 ;
 // List expressions
-list_value   :  '[' list_expr? ']'
+list_value   :  '[' expression? ']'
 ; 
 list_expr    :  expression ( ','  expression)*
 ;
-
 // Case expressions
 case_value   :  '{' case_expr? '}'
 ;
