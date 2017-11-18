@@ -10,17 +10,23 @@ import java.util.*;
 import java.io.*;
 
 class KoKoArrayList:ArrayList<KoKoAst>, KoKoAst {
-  constructor(list:List<KoKoAst>) : super(list) {}
+	var pipe: Boolean = false
+  constructor(list:List<KoKoAst>, pipe: Boolean) : super(list) {this.pipe= pipe}
   constructor() : super() {}
 	
 	override fun genCode(out : PrintStream){
 		if( this.size == 0 ) return
-		
-		this[0].genCode(out)
-		(1 until this.size).forEach{
-			out.print(", ")
-			this[it].genCode(out)
-		}
+
+		out.print("[ ")
+        this[0].genCode(out)
+        (1 until this.size).forEach{
+            if(this.size-1 == it && this.pipe)
+                out.print("| ")
+            else
+                out.print(", ")
+            this[it].genCode(out)
+        }
+        out.print("]")
 	}
 	
 	override fun eval(ctx : KoKoContext) : KoKoValue {

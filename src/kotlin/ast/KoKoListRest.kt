@@ -12,10 +12,6 @@ class KoKoListRest : ArrayList<KoKoAst>, KoKoAst {
 		if( this.size == 0 ) return
 
 		this[0].genCode(out)
-		(1 until this.size).forEach{
-			out.print(", ")
-			this[it].genCode(out)
-		}
 	}
 
 	override fun eval(ctx : KoKoContext) : KoKoValue {

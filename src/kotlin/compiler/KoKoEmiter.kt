@@ -53,11 +53,11 @@ interface KoKoEmiter {
   
 	fun LIST():KoKoList = KoKoList()
 
-	fun LISTREST(valor:List<KoKoAst>):KoKoListPat= KoKoListPat(valor as MutableList<KoKoAst>)
+	fun LISTREST(valor:List<KoKoAst>):KoKoListPat= KoKoListPat(valor as MutableList<KoKoAst>, true)
   
 	fun CALL(head:KoKoAst, args:KoKoList) = KoKoCall(head, args)
 
-    fun LISTExp(expressions:List<KoKoAst>) = KoKoArrayList(expressions)
+    fun LISTExp(expressions:List<KoKoAst>, pipe: Boolean) = KoKoArrayList(expressions, pipe)
 
     fun LISTExp(): KoKoArrayList = KoKoArrayList()
 
