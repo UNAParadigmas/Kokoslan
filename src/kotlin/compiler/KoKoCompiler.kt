@@ -1,14 +1,14 @@
-package kokoslan.kotlin.compile;
+package kokoslan.kotlin.compiler
 
 import kokoslan.kotlin.ast.*
 import kokoslan.kotlin.parser.*
 
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.*
+import org.antlr.v4.runtime.tree.ParseTree
 
-import java.util.*;
-import java.util.stream.*;
-import java.io.*;
+import java.util.*
+import java.util.stream.*
+import java.io.*
 
 class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>(), KoKoEmiter {
     var program:KoKoAst? = null

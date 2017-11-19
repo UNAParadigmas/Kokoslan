@@ -7,9 +7,9 @@
 
 package kokoslan.kotlin.ast
 
-import java.util.*
 import java.io.*
-import kokoslan.kotlin.ast.*
+import kokoslan.kotlin.eval.*
+import kokoslan.kotlin.exception.KoKoEvalException
 
 class KoKoNegative(var expr: KoKoAst) : KoKoAst{
 
@@ -19,11 +19,21 @@ class KoKoNegative(var expr: KoKoAst) : KoKoAst{
     }
 
 	override fun eval(ctx : KoKoContext): KoKoValue{
-        var l = ((expr as KoKoOperation).operands[0].eval(ctx)) as KoKoNumValue
-        println("l evaluado en negative es: ${l.value * -1}")
-        if(l is KoKoNumValue){
-            return KoKoNumValue(l.value * -1)
+        if(expr is KoKoOperation){
+            var l = (expr as KoKoOperation).operands[0].eval(ctx)
+            var r = (expr as KoKoOperation).operands[1]
+            var o = (expr as KoKoOperation).operator
+
+            return KoKoBiOperation(o, KoKoNum((l as KoKoNumValue).value * -1), r).eval(ctx)
         }
-        return KoKoNumValue((expr.eval(ctx) as KoKoNumValue).value)
+
+        try{
+            var valor = (expr.eval(ctx)) as KoKoNumValue
+            return KoKoNumValue(valor.value * -1)
+        }
+        catch(e: Exception){
+            throw KoKoEvalException("expression can't have a negative")
+        }
     }
+    
 }

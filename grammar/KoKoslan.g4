@@ -10,7 +10,6 @@ grammar KoKoslan;
 
 program      : definition* expression
 ;
-
 definition   : 'let' id '=' expression
 ;
 expression   : part_expr (',' part_expr)*

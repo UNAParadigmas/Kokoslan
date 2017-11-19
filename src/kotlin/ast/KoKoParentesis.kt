@@ -7,9 +7,8 @@
 
 package kokoslan.kotlin.ast
 
-import java.util.*
 import java.io.*
-import kokoslan.kotlin.ast.*
+import kokoslan.kotlin.eval.*
 
 class KoKoParentesis(var expr: KoKoAst) : KoKoAst {
 

@@ -4,9 +4,8 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.ast
 
-import kokoslan.ast.KoKoListPat
 import java.io.*
 import kokoslan.kotlin.eval.*
 
@@ -24,6 +23,7 @@ data class KoKoLambda(var pattern:KoKoAst, var expr:KoKoAst, var lambda_ctx : Ko
 		this.lambda_ctx.assoc(KoKoId("#KoKo"), KoKoNullValue(KoKoId(pattern.toString())))
 		return KoKoLambdaValue(this)
 	}
+
 	
 	fun eval(valor : KoKoList): KoKoValue{
 		val variable = this.lambda_ctx.find( KoKoId("#KoKo") ) as KoKoNullValue
@@ -33,12 +33,12 @@ data class KoKoLambda(var pattern:KoKoAst, var expr:KoKoAst, var lambda_ctx : Ko
         }
 		else {
 			if(valor[0] is KoKoNum)
-                this.lambda_ctx.assoc((variable.value as KoKoId ?: KoKoId("")), KoKoNumValue((valor[0] as KoKoNum).value))
+                this.lambda_ctx.assoc(variable.value as KoKoId, KoKoNumValue((valor[0] as KoKoNum).value))
 			else {
 				if(valor[0] is KoKoLambda)
-					this.lambda_ctx.assoc((variable.value as KoKoId ?: KoKoId("")), valor[0].eval(lambda_ctx))
+					this.lambda_ctx.assoc(variable.value as KoKoId, valor[0].eval(lambda_ctx))
 				else
-                	this.lambda_ctx.assoc((variable.value as KoKoId ?: KoKoId("")), (valor[0].eval(lambda_ctx) as KoKoListValue).list[0])
+                	this.lambda_ctx.assoc(variable.value as KoKoId, (valor[0].eval(lambda_ctx) as KoKoListValue).list[0])
             }
             if (valor.size > 1) {
                 val lamda_Hija = this.expr.eval(lambda_ctx) as KoKoLambdaValue

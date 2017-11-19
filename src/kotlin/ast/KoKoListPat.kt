@@ -1,6 +1,5 @@
-package kokoslan.ast
+package kokoslan.kotlin.ast
 
-import kokoslan.kotlin.ast.*
 import java.io.PrintStream
 import kokoslan.kotlin.eval.*
 import kokoslan.kotlin.exception.KoKoEvalException

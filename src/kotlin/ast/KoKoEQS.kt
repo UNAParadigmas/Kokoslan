@@ -14,11 +14,9 @@ class KoKoEQS(operator : KoKoAst, left : KoKoAst, right : KoKoAst) : KoKoBiOpera
 	
 	override fun eval(ctx : KoKoContext): KoKoValue{
 	    try {
-		    val lv = left().eval(ctx)
-			val rv = right().eval(ctx)
-	        if(lv is KoKoNumValue)
-     			return KoKoBoolValue((lv as KoKoNumValue).value == (rv as KoKoNumValue).value)
-     		return KoKoBoolValue((lv as KoKoBoolValue).value == (rv as KoKoBoolValue).value)
+		    val lv = left().eval(ctx) as KoKoAtom<*>
+			val rv = right().eval(ctx) as KoKoAtom<*>
+     		return KoKoBoolValue(lv.value == rv.value)
 	   } catch ( e : Exception ) {
 			throw KoKoEvalException("${e.message}")
 	   }
