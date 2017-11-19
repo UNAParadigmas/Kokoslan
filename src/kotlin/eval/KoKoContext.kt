@@ -4,9 +4,9 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.ast
 
-import java.util.*;
+import java.util.*
 
 class KoKoContext(val parent: KoKoContext? = null) : HashMap<String, KoKoValue>(){
  

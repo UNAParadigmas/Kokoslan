@@ -4,9 +4,9 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.ast
 
-import java.io.*;
+import java.io.*
 
 class KoKoLet( val id : KoKoAst, val expr : KoKoAst ) : KoKoAst{
  

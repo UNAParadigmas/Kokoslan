@@ -4,7 +4,7 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast.primitives
+package kokoslan.kotlin.ast
 
 import java.io.*
 import kokoslan.kotlin.ast.*

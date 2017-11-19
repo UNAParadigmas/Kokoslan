@@ -5,7 +5,7 @@
   @since 2017
 */
 
-package kokoslan.kotlin.ast.operations.boolean
+package kokoslan.kotlin.ast
 
 import java.util.*
 import java.io.*

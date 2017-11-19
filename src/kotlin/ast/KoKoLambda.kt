@@ -27,7 +27,7 @@ data class KoKoLambda(var pattern:KoKoAst, var expr:KoKoAst, var lambda_ctx : Ko
 		val variable = this.lambda_ctx.find( KoKoId("#KoKo") ) as KoKoNullValue
 		if(pattern is KoKoArrayList){
             val matched_List = (lambda_ctx.parent ?: lambda_ctx).find((valor[0] as MutableList<KoKoAst>)[0] as KoKoId)
-			this.lambda_ctx = KoKoListPat(pattern as MutableList<KoKoAst>).eval(lambda_ctx , matched_List as KoKoListValue, false)
+			this.lambda_ctx = KoKoListPat(pattern as MutableList<KoKoAst>, valor.size!= (pattern as KoKoArrayList).size).eval(lambda_ctx , matched_List as KoKoListValue, matched_List.size==1)
         }
 		else {
             this.lambda_ctx.assoc((variable.value as KoKoId ?: KoKoId("")), (valor[0].eval(lambda_ctx) as KoKoListValue).list[0])

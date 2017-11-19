@@ -4,7 +4,7 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast.operations.arithmetic
+package kokoslan.kotlin.ast
 
 import java.util.*
 import java.io.*

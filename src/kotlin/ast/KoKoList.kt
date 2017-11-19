@@ -4,10 +4,10 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.ast
 
-import java.util.*;
-import java.io.*;
+import java.util.*
+import java.io.*
 
 class KoKoList:ArrayList<KoKoAst>, KoKoAst {
   constructor(list:List<KoKoAst>) : super(list) {}

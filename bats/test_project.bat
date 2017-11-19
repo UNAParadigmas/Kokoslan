@@ -17,7 +17,7 @@ if %ERRORLEVEL% == 1 (goto :error)
 exit /b
 
 :kotlin
-kotlin -cp .;classes;lib;%CLASSPATH% kokoslan.kotlin.compile.KoKocKt cases\%1 output\%OUT%
+kotlin -cp .;classes;lib;%CLASSPATH% kokoslan.kotlin.compiler.KoKocKt cases\%1 output\%OUT%
 if %ERRORLEVEL% == 1 (goto :error)
 exit /b
 

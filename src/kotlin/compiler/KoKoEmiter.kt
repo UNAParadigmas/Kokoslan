@@ -4,12 +4,9 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.compile;
+package kokoslan.kotlin.compiler;
 
 import kokoslan.kotlin.ast.*
-import kokoslan.kotlin.ast.operations.boolean.*
-import kokoslan.kotlin.ast.operations.arithmetic.*
-import kokoslan.kotlin.ast.primitives.*
 
 interface KoKoEmiter {
 	
@@ -52,11 +49,11 @@ interface KoKoEmiter {
   
 	fun LIST():KoKoList = KoKoList()
 
-	fun LISTREST(valor:List<KoKoAst>):KoKoListPat= KoKoListPat(valor as MutableList<KoKoAst>)
+	fun LISTREST(valor:List<KoKoAst>):KoKoListPat= KoKoListPat(valor as MutableList<KoKoAst>, true)
   
 	fun CALL(head:KoKoAst, args:KoKoList) = KoKoCall(head, args)
 
-    fun LISTExp(expressions:List<KoKoAst>) = KoKoArrayList(expressions)
+    fun LISTExp(expressions:List<KoKoAst>, pipe: Boolean) = KoKoArrayList(expressions, pipe)
 
     fun LISTExp(): KoKoArrayList = KoKoArrayList()
 
