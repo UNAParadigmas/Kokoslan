@@ -57,6 +57,8 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
     override fun visitLambda_expr( ctx:KoKoslanParser.Lambda_exprContext) : KoKoAst{
         val pattern = visit(ctx.pattern())
         val expression = visit(ctx.expression())
+        if(ctx.ARROW()!=null)
+            return LAMBDAWHEN(pattern, expression)
         return LAMBDA(pattern, expression)
     }
 
@@ -98,8 +100,12 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
     override fun visitBool_oper(ctx:KoKoslanParser.Bool_operContext) = OPERATOR(ctx.oper.getText())
 
     override fun visitParentValueExpr(ctx : KoKoslanParser.ParentValueExprContext) : KoKoAst {
-        return visit(ctx.expression())
+        val expr = visit(ctx.expression())
+        return PARENTESIS(expr)
     }
+
+    override fun visitNegative(ctx: KoKoslanParser.NegativeContext) = NEGATIVE(visit(ctx.expression()))
+
 
     override fun visitEvaluable_expr(ctx: KoKoslanParser.Evaluable_exprContext): KoKoAst {
 		if(ctx.bool_expr()!=null) {

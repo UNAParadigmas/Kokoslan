@@ -1,11 +1,14 @@
 # Created by https://www.gitignore.io/api/java,windows
 
-
+# Generated classes
 classes/kokoslan/*
 classes/META-INF/*
 
-output/*.kl
-src/kotlin/parser/
+# Output de tests
+output/*
+
+# Parser generated files
+src/kotlin/parser/*
 
 
 ### Java ###

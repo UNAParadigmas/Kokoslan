@@ -63,6 +63,12 @@ interface KoKoEmiter {
 
     fun LAMBDA(pattern : KoKoAst, expression : KoKoAst) = KoKoLambda(pattern, expression)
 
+	fun LAMBDAWHEN(pattern : KoKoAst, expression : KoKoAst) = KoKoLambdaWhen(pattern, expression)
+
+	fun PARENTESIS(expression : KoKoAst) = KoKoParentesis(expression)
+
+	fun NEGATIVE(expression: KoKoAst) = KoKoNegative(expression)
+
 	companion object {
 		val TRUE = KoKoBool(true)
 		val FALSE = KoKoBool(false)

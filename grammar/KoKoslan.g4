@@ -1,7 +1,7 @@
-/**
-  KoKoslan Grammar
-  EIF400 II-2017
-  @author loriacarlo@gmail.com
+/*
+  @author Denis Rodriguez Viquez
+          Luis Vasquez Quiros
+          Walter Chavez Oviedo
   @since 2017
 */
 
@@ -17,7 +17,7 @@ expression   : part_expr (',' part_expr)*
 ;
 part_expr    :  lambda_expr | evaluable_expr 
 ;
-lambda_expr  : '\\' pattern '.' expression 
+lambda_expr  : ('\\' pattern '.' expression) | (pattern ARROW expression)  
 ;
 evaluable_expr    :  add_expr | (bool_expr test_expr?)
 ;
@@ -39,6 +39,7 @@ test_expr         :  '?' expression ':' expression
 ;
 // Value Expressions
 value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
+                 | SUB expression                 #Negative
                  | 'print(' expression ')'        #PrintValue
                  | value_expr call_args	          #callValueExpr
                  | atomic_value 		              #AtomicValueExpr
@@ -157,6 +158,8 @@ DIV :   '/'
 ADD :   '+' 
 ;
 SUB :   '-' 
+;
+ARROW:    '->'
 ;
 ID : [a-zA-Z][a-zA-Z_0-9]* 
 ;
