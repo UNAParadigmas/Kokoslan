@@ -6,8 +6,9 @@
 */
 package kokoslan.kotlin.ast;
 
-import java.util.*;
-import java.io.*;
+import java.util.*
+import java.io.*
+import kokoslan.kotlin.eval.*
 
 class KoKoList:ArrayList<KoKoAst>, KoKoAst {
   constructor(list: List<KoKoAst>) : super(list) {}

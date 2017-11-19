@@ -4,9 +4,12 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.eval
 
-import java.util.*;
+import java.util.*
+import kokoslan.kotlin.exception.*
+import kokoslan.kotlin.ast.*
+
 
 class KoKoContext(var parent: KoKoContext? = null) : HashMap<String, KoKoValue>(){
  

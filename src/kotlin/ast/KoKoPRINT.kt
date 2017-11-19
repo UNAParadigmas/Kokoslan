@@ -4,9 +4,10 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.ast
 
-import java.io.*;
+import java.io.*
+import kokoslan.kotlin.eval.*
 
 class KoKoPrint(val expr : KoKoAst ) : KoKoAst{
  

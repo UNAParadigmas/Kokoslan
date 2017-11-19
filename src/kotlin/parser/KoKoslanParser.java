@@ -1,5 +1,5 @@
 // Generated from grammar/KoKoslan.g4 by ANTLR 4.7
-package kokoslan.parser;
+package kokoslan.kotlin.parser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;

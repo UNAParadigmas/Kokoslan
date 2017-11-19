@@ -4,5 +4,5 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.eval
 interface KoKoValue

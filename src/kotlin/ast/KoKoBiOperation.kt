@@ -4,9 +4,11 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
-import java.util.*;
-import java.io.*;
+package kokoslan.kotlin.ast
+
+import java.util.*
+import kokoslan.kotlin.eval.*
+import kokoslan.kotlin.exception.*
 
 open class KoKoBiOperation(operator:KoKoAst, left:KoKoAst, right:KoKoAst):KoKoOperation(operator, Arrays.asList(left, right)) {
 	fun left() = this.operands[0]

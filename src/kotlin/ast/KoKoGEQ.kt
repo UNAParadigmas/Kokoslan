@@ -6,12 +6,10 @@
 */
 package kokoslan.kotlin.ast;
 
-import java.util.*;
-import java.io.*;
-
+import kokoslan.kotlin.eval.*
+import kokoslan.kotlin.exception.KoKoEvalException
 
 class KoKoGEQ(operator : KoKoAst, left : KoKoAst, right : KoKoAst) : KoKoBiOperation(operator, left, right) {
-	
 	override fun eval(ctx : KoKoContext): KoKoBoolValue{
 	    try {
 		    val lv = (left().eval(ctx) as KoKoNumValue)

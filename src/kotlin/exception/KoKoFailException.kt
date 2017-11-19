@@ -4,6 +4,6 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.exception
+package kokoslan.kotlin.exception
 
 class KoKoFailException(val msg:String ) : RuntimeException(msg){}

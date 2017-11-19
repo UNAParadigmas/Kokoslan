@@ -11,7 +11,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import kokoslan.kotlin.compile.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import kokoslan.parser.*;
+import kokoslan.kotlin.parser.*;
 const val VERSION = "KoKoc v0.0 CR EIF400.II-2017 KOTLIN"
 const val PROMPT = ">"
 
@@ -20,7 +20,7 @@ fun main(args:Array<String>) {
 		println(">>> $VERSION  <<<")
 		println("...............................................\n")
 	// Get parameters
-		var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\hw.kl"
+		var inputFile:String? = "C:\\Users\\luisf\\Documents\\GitHub\\Proyecto-K\\cases\\hw.kl"
     	//var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\cases_max.kl"
 		var outputFile:String? = null
 		

@@ -4,5 +4,5 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.exception
 class KoKoStackUnderflow() : RuntimeException("Pop of an empty context"){}

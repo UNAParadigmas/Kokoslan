@@ -1,8 +1,10 @@
-package kokoslan.ast
+package kokoslan.kotlin.ast
 
-import kokoslan.kotlin.ast.*
+import kokoslan.kotlin.eval.*
+
 import java.io.PrintStream
 import java.util.ArrayList
+
 
 class KoKoListRest : ArrayList<KoKoAst>, KoKoAst {
   constructor(list:List<KoKoAst>) : super(list) {}

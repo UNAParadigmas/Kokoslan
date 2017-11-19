@@ -6,9 +6,8 @@
 */
 package kokoslan.kotlin.compile;
 
-import kokoslan.ast.KoKoElvis
 import kokoslan.ast.KoKoListPat
-import kokoslan.kotlin.ast.*;
+import kokoslan.kotlin.ast.*
 
 interface KoKoEmiter {
 	

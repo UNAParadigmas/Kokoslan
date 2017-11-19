@@ -1,7 +1,7 @@
-package kokoslan.ast
+package kokoslan.kotlin.ast
 
-import kokoslan.exception.KoKoFailException
-import kokoslan.kotlin.ast.*
+import kokoslan.kotlin.eval.*
+import kokoslan.kotlin.exception.KoKoFailException
 import java.io.PrintStream
 
 class KoKoElvis(val operator : KoKoAst, val operands: MutableList<KoKoAst> = mutableListOf()) : KoKoAst {

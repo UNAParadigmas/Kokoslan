@@ -6,6 +6,8 @@
 */
 package kokoslan.kotlin.ast;
 
+import kokoslan.kotlin.eval.*
+
 class KoKoNum(value : Double) : KoKoAtom<Double>(value){
    override fun eval(ctx : KoKoContext) = KoKoNumValue(value)
    

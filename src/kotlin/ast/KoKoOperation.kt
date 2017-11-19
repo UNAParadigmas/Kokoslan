@@ -6,8 +6,9 @@
 */
 package kokoslan.kotlin.ast;
 
-import java.util.*;
-import java.io.*;
+import java.io.*
+import kokoslan.kotlin.eval.*
+import kokoslan.kotlin.exception.KoKoEvalException
 
 
 open class KoKoOperation(val operator : KoKoAst, val operands: MutableList<KoKoAst> = mutableListOf()) : KoKoAst{

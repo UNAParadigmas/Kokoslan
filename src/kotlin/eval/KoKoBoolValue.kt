@@ -4,6 +4,6 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.eval
 
 class KoKoBoolValue(value:Boolean):KoKoAtomValue<Boolean>(value){}

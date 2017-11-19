@@ -1,7 +1,7 @@
 package kokoslan.kotlin.ast;
 
-import java.util.*;
-import java.io.*;
+import java.io.*
+import kokoslan.kotlin.eval.*
 
 class KoKoProgram(val statements: MutableList<KoKoAst>) : KoKoAst{
    

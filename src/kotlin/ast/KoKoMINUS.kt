@@ -4,10 +4,10 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.ast
 
-import java.util.*;
-import java.io.*;
+import kokoslan.kotlin.eval.*
+import kokoslan.kotlin.exception.KoKoEvalException
 
 
 class KoKoMINUS(operator : KoKoAst, left : KoKoAst, right : KoKoAst) : KoKoBiOperation(operator, left, right) {

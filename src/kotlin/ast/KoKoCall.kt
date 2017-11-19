@@ -6,8 +6,9 @@
 */
 package kokoslan.kotlin.ast;
 
-import java.util.*;
-import java.io.*;
+import java.util.*
+import java.io.*
+import kokoslan.kotlin.eval.*
 
 class KoKoCall(var head:KoKoAst, var args:KoKoList = KoKoList(Arrays.asList())) : KoKoAst{
 	

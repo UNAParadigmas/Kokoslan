@@ -6,7 +6,8 @@
 */
 package kokoslan.kotlin.ast;
 
-import java.io.*;
+import java.io.*
+import kokoslan.kotlin.eval.*
 
 class KoKoLet( val id : KoKoAst, val expr : KoKoAst ) : KoKoAst{
  

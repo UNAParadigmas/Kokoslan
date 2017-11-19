@@ -6,6 +6,7 @@
 */
 package kokoslan.kotlin.ast;
 
+import kokoslan.kotlin.eval.*
 class KoKoBool( value : Boolean ) : KoKoAtom<Boolean>( value ) {
     override fun eval(ctx : KoKoContext) = KoKoBoolValue(value)
 }

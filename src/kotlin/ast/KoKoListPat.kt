@@ -2,6 +2,8 @@ package kokoslan.ast
 
 import kokoslan.kotlin.ast.*
 import java.io.PrintStream
+import kokoslan.kotlin.eval.*
+import kokoslan.kotlin.exception.KoKoEvalException
 
 class KoKoListPat(var pattern: MutableList<KoKoAst>, var pipe: Boolean) : KoKoAst {
 

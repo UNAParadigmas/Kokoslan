@@ -4,9 +4,8 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
-import java.util.*;
-import java.io.*;
+package kokoslan.kotlin.eval
+import java.util.*
 
 class KoKoListValue(var list:MutableList<KoKoValue> = mutableListOf()):ArrayList<KoKoValue>(list), KoKoValue {
 }

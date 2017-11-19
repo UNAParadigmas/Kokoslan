@@ -1,7 +1,6 @@
 package kokoslan.kotlin.ast
 
-import kokoslan.exception.KoKoFailException
-import kokoslan.kotlin.ast.*
+import kokoslan.kotlin.eval.*
 
 class KoKoRest(val operands: MutableList<KoKoAst>) : KoKoAst {
     /*override fun genCode(out : PrintStream){

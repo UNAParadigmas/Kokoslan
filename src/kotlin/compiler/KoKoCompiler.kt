@@ -1,8 +1,7 @@
 package kokoslan.kotlin.compile;
 
-import kokoslan.ast.KoKoElvis
-import kokoslan.kotlin.ast.*;
-import kokoslan.parser.*;
+import kokoslan.kotlin.ast.*
+import kokoslan.kotlin.parser.*
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;

@@ -4,10 +4,11 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.ast
 
-import java.util.*;
-import java.io.*;
+import java.util.*
+import java.io.*
+import kokoslan.kotlin.eval.*
 
 class KoKoArrayList:ArrayList<KoKoAst>, KoKoAst {
 	var pipe: Boolean = false
