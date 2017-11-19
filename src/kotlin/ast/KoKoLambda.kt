@@ -6,9 +6,7 @@
 */
 package kokoslan.kotlin.ast;
 
-import kokoslan.ast.KoKoListPat
-import java.util.*;
-import java.io.*;
+import java.io.*
 
 data class KoKoLambda(var pattern:KoKoAst, var expr:KoKoAst, var lambda_ctx : KoKoContext = KoKoContext(null)) : KoKoAst{
 	

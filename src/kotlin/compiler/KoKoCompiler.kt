@@ -1,15 +1,10 @@
-package kokoslan.kotlin.compile;
+package kokoslan.kotlin.compiler;
 
-import kokoslan.ast.KoKoElvis
-import kokoslan.kotlin.ast.*;
-import kokoslan.parser.*;
+import kokoslan.kotlin.ast.*
+import kokoslan.parser.*
+import org.antlr.v4.runtime.tree.ParseTree
+import java.io.*
 
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.ParseTree;
-
-import java.util.*;
-import java.util.stream.*;
-import java.io.*;
 
 class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>(), KoKoEmiter {
     var program:KoKoAst? = null
@@ -216,9 +211,7 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
             visit(ctx.list_pat())
     }
 
-    /*override fun visitListFirst(ctx: KoKoslanParser.ListFirstContext):KoKoAst {
-        throw Exception("first")
-    }
+    
 
     override fun visitRest(ctx: KoKoslanParser.RestContext) : KoKoAst {
         var a = mutableListOf<KoKoAst>()
@@ -236,6 +229,8 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         var a = mutableListOf<KoKoAst>()
         ctx.expression().part_expr().map{ visit(it) }.forEach{a.add(it)}
         return KoKoLength(a) 
-    }*/
+    }
+
+
 
 }

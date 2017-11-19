@@ -4,13 +4,9 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.compile;
+package kokoslan.kotlin.compiler;
 
-import kokoslan.ast.KoKoElvis
-import kokoslan.ast.KoKoListPat
-import kokoslan.ast.KoKoListRest
-import kokoslan.kotlin.ast.*;
-import java.util.*;
+import kokoslan.kotlin.ast.*
 
 interface KoKoEmiter {
 	

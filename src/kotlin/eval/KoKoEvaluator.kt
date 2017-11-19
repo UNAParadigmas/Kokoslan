@@ -4,7 +4,7 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast;
+package kokoslan.kotlin.ast
 
 class KoKoEvaluator {
 	fun evaluate(/*tree:KoKoProgram, ctx:KoKoContext*/) : KoKoValue? {
