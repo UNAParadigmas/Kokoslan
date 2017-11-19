@@ -7,11 +7,9 @@
 package kokoslan.kotlin.compile;
 
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.ParseTree;
-import kokoslan.kotlin.compile.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import kokoslan.parser.*;
+import kokoslan.kotlin.parser.*
 const val VERSION = "KoKoc v0.0 CR EIF400.II-2017 KOTLIN"
 const val PROMPT = ">"
 

@@ -1,4 +1,4 @@
-package kokoslan.ast
+package kokoslan.kotlin.ast
 
 import kokoslan.exception.KoKoFailException
 import kokoslan.kotlin.ast.*

@@ -6,11 +6,10 @@
 */
 package kokoslan.kotlin.compile;
 
-import kokoslan.ast.KoKoElvis
-import kokoslan.ast.KoKoListPat
-import kokoslan.ast.KoKoListRest
-import kokoslan.kotlin.ast.*;
-import java.util.*;
+import kokoslan.kotlin.ast.*
+import kokoslan.kotlin.ast.operations.boolean.*
+import kokoslan.kotlin.ast.operations.arithmetic.*
+import kokoslan.kotlin.ast.primitives.*
 
 interface KoKoEmiter {
 	
