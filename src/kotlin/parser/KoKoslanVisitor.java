@@ -71,6 +71,12 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBool_Not_expr(KoKoslanParser.Bool_Not_exprContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link KoKoslanParser#negative}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNegative(KoKoslanParser.NegativeContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link KoKoslanParser#bool_oper}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -108,13 +114,6 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCallValueExpr(KoKoslanParser.CallValueExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Negative}
-	 * labeled alternative in {@link KoKoslanParser#value_expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNegative(KoKoslanParser.NegativeContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code PrintValue}
 	 * labeled alternative in {@link KoKoslanParser#value_expr}.

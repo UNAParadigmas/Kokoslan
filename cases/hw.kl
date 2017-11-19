@@ -3,5 +3,5 @@
 */
 let x = 666
 let y = 999
-let f = x -2.5 + y 
-f()
+let f = x -3.5 +20 
+f

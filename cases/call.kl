@@ -1,3 +1,5 @@
 let x = [666,55]
 let y = length([1,2,3,4,5])
 print(y)
+NOT(NOT TRUE)
+N

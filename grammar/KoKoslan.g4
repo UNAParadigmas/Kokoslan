@@ -14,7 +14,7 @@ definition   : 'let' id '=' expression
 ;
 expression   : part_expr (',' part_expr)*
 ;
-part_expr    :  lambda_expr | evaluable_expr 
+part_expr    :  lambda_expr | evaluable_expr | negative
 ;
 lambda_expr  : ('\\' pattern '.' expression) | (pattern ARROW expression)  
 ;
@@ -28,6 +28,8 @@ bool_expr         : bool_Not_expr (bool_oper bool_Not_expr)*
 ;
 bool_Not_expr	  : NOT*value_expr
 ;
+negative         : SUB expression
+;
 bool_oper         : oper = (OR | AND | EQS | NEQ | LEQ | GEQ | LS | GS)
 ;
 mult_expr         :  value_expr (mult_oper value_expr)*
@@ -38,14 +40,13 @@ test_expr         :  '?' expression ':' expression
 ;
 // Value Expressions
 value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
-                 | SUB expression                 #Negative
                  | 'print(' expression ')'        #PrintValue
                  | value_expr call_args	          #callValueExpr
                  | atomic_value 		              #AtomicValueExpr
 				         | list_value 			              #ListValueExpr
                  | case_value			                #CaseValueExpr
 				         | 'fail()' 			                #FailValue 
-                 | primitive                      #PrimitiveExpr        
+                 | primitive                      #PrimitiveExpr	 
                  | list_pat			    	            #ListPattern        
 ;
 primitive   :  cons | rest | first | length
@@ -96,7 +97,7 @@ bool : NOT* (TRUE | FALSE)
 ////////////////////////////////////////////////////////////////
 //                    Lexer    
 ///////////////////////////////////////////////////////////////
-NUMBER : ('-')? INTEGER ('.' INTEGER)? 
+NUMBER : INTEGER ('.' INTEGER)? 
 ;
 fragment INTEGER : [0-9]+ ;
 
