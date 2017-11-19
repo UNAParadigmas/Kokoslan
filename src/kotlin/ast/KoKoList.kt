@@ -1,10 +1,16 @@
+/*
+  @author Denis Rodriguez Viquez
+          Luis Vasquez Quiros
+          Walter Chavez Oviedo
+  @since 2017
+*/
 package kokoslan.kotlin.ast;
 
 import java.util.*;
 import java.io.*;
 
 class KoKoList:ArrayList<KoKoAst>, KoKoAst {
-  constructor(list:List<KoKoAst>) : super(list) {}
+  constructor(list: List<KoKoAst>) : super(list) {}
   constructor() : super() {}
 	
 	override fun genCode(out : PrintStream){
@@ -19,7 +25,6 @@ class KoKoList:ArrayList<KoKoAst>, KoKoAst {
 	
 	override fun eval(ctx : KoKoContext) : KoKoValue {
 		val res = KoKoListValue()
-		println("Entre aquí")
 		this.forEach{
 			res.list.add(it.eval(ctx))
 		}

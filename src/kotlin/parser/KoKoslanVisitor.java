@@ -41,12 +41,6 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLambda_expr(KoKoslanParser.Lambda_exprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link KoKoslanParser#print}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPrint(KoKoslanParser.PrintContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link KoKoslanParser#evaluable_expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -64,6 +58,24 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAdd_oper(KoKoslanParser.Add_operContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link KoKoslanParser#bool_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBool_expr(KoKoslanParser.Bool_exprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link KoKoslanParser#bool_Not_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBool_Not_expr(KoKoslanParser.Bool_Not_exprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link KoKoslanParser#bool_oper}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBool_oper(KoKoslanParser.Bool_operContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link KoKoslanParser#mult_expr}.
 	 * @param ctx the parse tree
@@ -97,6 +109,13 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCallValueExpr(KoKoslanParser.CallValueExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code PrintValue}
+	 * labeled alternative in {@link KoKoslanParser#value_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintValue(KoKoslanParser.PrintValueContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ListValueExpr}
 	 * labeled alternative in {@link KoKoslanParser#value_expr}.
 	 * @param ctx the parse tree
@@ -104,12 +123,26 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitListValueExpr(KoKoslanParser.ListValueExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code FailValue}
+	 * labeled alternative in {@link KoKoslanParser#value_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFailValue(KoKoslanParser.FailValueContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code CaseValueExpr}
 	 * labeled alternative in {@link KoKoslanParser#value_expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCaseValueExpr(KoKoslanParser.CaseValueExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ListPattern}
+	 * labeled alternative in {@link KoKoslanParser#value_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListPattern(KoKoslanParser.ListPatternContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code AtomicValueExpr}
 	 * labeled alternative in {@link KoKoslanParser#value_expr}.
