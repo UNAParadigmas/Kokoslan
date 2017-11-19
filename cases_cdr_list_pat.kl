@@ -1,8 +1,0 @@
-let list = [1,2,[1]]
-
-let cdr = \[x , r | [s | m]].m
-
-cdr(list)
-
-// expected [2, 3]
-

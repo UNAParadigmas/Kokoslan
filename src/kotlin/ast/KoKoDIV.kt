@@ -16,6 +16,8 @@ class KoKoDIV(operator : KoKoAst, left : KoKoAst, right : KoKoAst) : KoKoOperati
 	   try {
 		     val lv = (operands[0].eval(ctx)) as KoKoNumValue
 			 val rv = (operands[1].eval(ctx)) as KoKoNumValue
+			 println("L en DIV es: ${lv}")
+			 println("R en DIV es: ${rv}")
 	         return KoKoNumValue(lv.value / rv.value)
 	   } catch ( e : Exception ) {
 			throw KoKoEvalException("${e.message}")
