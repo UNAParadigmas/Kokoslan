@@ -4,12 +4,11 @@
           Walter Chavez Oviedo
   @since 2017
 */
+package kokoslan.kotlin.ast;
 
-package kokoslan.kotlin.ast
+import java.util.*;
+import java.io.*;
 
-import java.util.*
-import java.io.*
-import kokoslan.kotlin.ast.*
 
 class KoKoNOT(var expr: KoKoAst) : KoKoAst {
 

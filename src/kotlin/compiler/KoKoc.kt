@@ -4,12 +4,14 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.compiler
+package kokoslan.kotlin.compile;
 
-import org.antlr.v4.runtime.*
-import java.io.FileInputStream
-import java.io.InputStream
-import kokoslan.parser.*
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.ParseTree;
+import kokoslan.kotlin.compile.*;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import kokoslan.parser.*;
 const val VERSION = "KoKoc v0.0 CR EIF400.II-2017 KOTLIN"
 const val PROMPT = ">"
 
@@ -18,7 +20,7 @@ fun main(args:Array<String>) {
 		println(">>> $VERSION  <<<")
 		println("...............................................\n")
 	// Get parameters
-		var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\middle\\cases_cdr_list_pat.kl"
+		var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\hw.kl"
     	//var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\cases_max.kl"
 		var outputFile:String? = null
 		

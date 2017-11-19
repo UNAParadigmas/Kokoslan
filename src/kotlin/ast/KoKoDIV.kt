@@ -4,18 +4,18 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast
+package kokoslan.kotlin.ast;
 
-import java.util.*
-import java.io.*
-import kokoslan.kotlin.ast.*
+import java.util.*;
+import java.io.*;
 
-class KoKoDIV(operator : KoKoAst, left : KoKoAst, right : KoKoAst) : KoKoOperation(operator, Arrays.asList(left, right)) {
+
+class KoKoDIV(operator : KoKoAst, left : KoKoAst, right : KoKoAst) : KoKoBiOperation(operator, left, right) {
 	
 	override fun eval(ctx : KoKoContext): KoKoValue{
 	   try {
-		     val lv = (operands[0].eval(ctx)) as KoKoNumValue
-			 val rv = (operands[1].eval(ctx)) as KoKoNumValue
+		     val lv = (left().eval(ctx)) as KoKoNumValue
+			 val rv = (right().eval(ctx)) as KoKoNumValue
 	         return KoKoNumValue(lv.value / rv.value)
 	   } catch ( e : Exception ) {
 			throw KoKoEvalException("${e.message}")

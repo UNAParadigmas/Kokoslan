@@ -4,17 +4,17 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast
+package kokoslan.kotlin.ast;
 
-import java.util.*
+import java.util.*;
 
-class KoKoContext(val parent: KoKoContext? = null) : HashMap<String, KoKoValue>(){
+class KoKoContext(var parent: KoKoContext? = null) : HashMap<String, KoKoValue>(){
  
 	fun find(id : KoKoId): KoKoValue{
 		val valor = get(id.value)
 		if (valor != null) return valor
 		if (parent == null) throw KoKoNotFoundId(id)
-		return parent.find(id)
+		return (parent as KoKoContext).find(id)
 	}
 	
 	fun assoc(id : KoKoId, valor : KoKoValue){

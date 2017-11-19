@@ -1,4 +1,4 @@
-package kokoslan.kotlin.ast
+package kokoslan.ast
 
 import kokoslan.kotlin.ast.*
 import java.io.PrintStream

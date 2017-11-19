@@ -1,10 +1,15 @@
-package kokoslan.kotlin.compiler;
+package kokoslan.kotlin.compile;
 
-import kokoslan.kotlin.ast.*
-import kokoslan.parser.*
-import org.antlr.v4.runtime.tree.ParseTree
-import java.io.*
+import kokoslan.ast.KoKoElvis
+import kokoslan.kotlin.ast.*;
+import kokoslan.parser.*;
 
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.ParseTree;
+
+import java.util.*;
+import java.util.stream.*;
+import java.io.*;
 
 class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>(), KoKoEmiter {
     var program:KoKoAst? = null
@@ -174,7 +179,7 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         return FAIL()
     }
 
-    override fun  visitCons(ctx: KoKoslanParser.ConsContext) :KoKoAst {
+    /*override fun  visitCons(ctx: KoKoslanParser.ConsContext) :KoKoAst {
         var a = mutableListOf<KoKoAst>()
         ctx.expression().forEach{ it.part_expr().map{ visit(it) }.forEach{a.add(it)} }
         return KoKoCons(a)
@@ -211,7 +216,9 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
             visit(ctx.list_pat())
     }
 
-    
+    /*override fun visitListFirst(ctx: KoKoslanParser.ListFirstContext):KoKoAst {
+        throw Exception("first")
+    }
 
     override fun visitRest(ctx: KoKoslanParser.RestContext) : KoKoAst {
         var a = mutableListOf<KoKoAst>()
@@ -229,8 +236,6 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
         var a = mutableListOf<KoKoAst>()
         ctx.expression().part_expr().map{ visit(it) }.forEach{a.add(it)}
         return KoKoLength(a) 
-    }
-
-
+    }*/*/
 
 }

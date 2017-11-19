@@ -8,7 +8,6 @@ package kokoslan.kotlin.ast;
 
 import java.util.*;
 import java.io.*;
-import java.util.stream.*;
 
 class KoKoCall(var head:KoKoAst, var args:KoKoList = KoKoList(Arrays.asList())) : KoKoAst{
 	
@@ -19,10 +18,15 @@ class KoKoCall(var head:KoKoAst, var args:KoKoList = KoKoList(Arrays.asList())) 
 		out.print(")")
 	}
 	
-	override fun eval(ctx : KoKoContext) : KoKoValue{
-		val lambda_ast = ctx.find(KoKoId(head.toString())) as KoKoLambdaValue
-		val lambda = lambda_ast.value as KoKoLambda
-		val evaluacion = lambda.eval(args)
-		return evaluacion
+	override fun eval(ctx : KoKoContext) : KoKoValue {
+        val lambda_ast = ctx.find(KoKoId(head.toString())) as KoKoLambdaValue
+        val lambda = lambda_ast.value as KoKoLambda
+        if (args.size == 1){
+        	val t = (args[0] as KoKoList)[0].eval(ctx)
+			if(t is KoKoNumValue)
+                return lambda.eval(KoKoList(mutableListOf(KoKoNum(t.value))))
+        	return lambda.eval(KoKoList(mutableListOf((t as KoKoLambdaValue).value)))
+    	}
+		return lambda.eval(args)
 	}
 }

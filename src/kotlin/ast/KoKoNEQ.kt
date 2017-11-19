@@ -4,19 +4,22 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast
+package kokoslan.kotlin.ast;
 
-import java.util.*
-import java.io.*
-import kokoslan.kotlin.ast.*
+import java.util.*;
+import java.io.*;
 
-class KoKoNEQ(operator : KoKoAst, left : KoKoAst, right : KoKoAst) : KoKoOperation(operator, Arrays.asList(left, right)) {
+
+class KoKoNEQ(operator : KoKoAst, left : KoKoAst, right : KoKoAst) : KoKoBiOperation(operator, left, right) {
 	
 	override fun eval(ctx : KoKoContext): KoKoBoolValue{
 	   try {
-           val lv = operands[0].eval(ctx) as KoKoAtomValue<*>
-           val rv = operands[1].eval(ctx) as KoKoAtomValue<*>
-		   return KoKoBoolValue(lv.value != rv.value)
+		    val lv = left().eval(ctx)
+			val rv = right().eval(ctx)
+	        if(lv is KoKoNumValue)
+     			return KoKoBoolValue((lv as KoKoNumValue).value != (rv as KoKoNumValue).value)
+     		return KoKoBoolValue((lv as KoKoBoolValue).value != (rv as KoKoBoolValue).value)
+    		
 	   } catch ( e : Exception ) {
 			throw KoKoEvalException("${e.message}")
 	   }

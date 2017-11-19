@@ -1,29 +1,21 @@
-/*
-  @author Denis Rodriguez Viquez
-          Luis Vasquez Quiros
-          Walter Chavez Oviedo
-  @since 2017
-*/
 package kokoslan.kotlin.ast
 
+import kokoslan.exception.KoKoFailException
 import kokoslan.kotlin.ast.*
-import java.io.*
 
 class KoKoFirst(val operands: MutableList<KoKoAst>) : KoKoAst {
-    
-    override fun genCode(out : PrintStream){
-       /* out.print("first( ")
-	     operands[0].forEach {
-            it.forEach{
-               it.genCode(out)
-            }
+    /*override fun genCode(out : PrintStream){
+        out.print("first(")
+	    operands[0].genCode(out)
+        operands.forEach{ e ->
+            out.print(",")
+            e.genCode(out)
         }
-        out.print(" )")
-        */
-    }
-
+	    out.print(")")
+   }
+*/
     override fun eval(ctx: KoKoContext): KoKoValue {
         var vec = operands[0].eval(ctx)
-        return (vec as KoKoListValue)[0]
+         return (vec as KoKoListValue)[0]
     }
 }

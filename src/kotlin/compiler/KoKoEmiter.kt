@@ -4,9 +4,11 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.compiler;
+package kokoslan.kotlin.compile;
 
-import kokoslan.kotlin.ast.*
+import kokoslan.ast.KoKoElvis
+import kokoslan.ast.KoKoListPat
+import kokoslan.kotlin.ast.*;
 
 interface KoKoEmiter {
 	

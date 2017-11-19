@@ -4,6 +4,6 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast
+package kokoslan.kotlin.ast;
 
 class KoKoNotFoundId(val id:KoKoId) : RuntimeException("*** Id '' $id.value not defined! ***"){}

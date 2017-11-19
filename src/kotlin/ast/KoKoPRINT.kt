@@ -4,15 +4,14 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast
+package kokoslan.kotlin.ast;
 
-import kokoslan.kotlin.ast.*
-import java.io.*
+import java.io.*;
 
 class KoKoPrint(val expr : KoKoAst ) : KoKoAst{
  
    override fun genCode(out : PrintStream){
-      this.expr.genCode(out)
+        this.expr.genCode(out)
 	    out.println()
    }
    

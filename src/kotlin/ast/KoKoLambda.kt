@@ -6,7 +6,9 @@
 */
 package kokoslan.kotlin.ast;
 
-import java.io.*
+import kokoslan.ast.KoKoListPat
+import java.util.*;
+import java.io.*;
 
 data class KoKoLambda(var pattern:KoKoAst, var expr:KoKoAst, var lambda_ctx : KoKoContext = KoKoContext(null)) : KoKoAst{
 	
@@ -30,7 +32,14 @@ data class KoKoLambda(var pattern:KoKoAst, var expr:KoKoAst, var lambda_ctx : Ko
 			this.lambda_ctx = KoKoListPat(pattern as MutableList<KoKoAst>, valor.size!= (pattern as KoKoArrayList).size).eval(lambda_ctx , matched_List as KoKoListValue, matched_List.size==1)
         }
 		else {
-            this.lambda_ctx.assoc((variable.value as KoKoId ?: KoKoId("")), (valor[0].eval(lambda_ctx) as KoKoListValue).list[0])
+			if(valor[0] is KoKoNum)
+                this.lambda_ctx.assoc((variable.value as KoKoId ?: KoKoId("")), KoKoNumValue((valor[0] as KoKoNum).value))
+			else {
+				if(valor[0] is KoKoLambda)
+					this.lambda_ctx.assoc((variable.value as KoKoId ?: KoKoId("")), valor[0].eval(lambda_ctx))
+				else
+                	this.lambda_ctx.assoc((variable.value as KoKoId ?: KoKoId("")), (valor[0].eval(lambda_ctx) as KoKoListValue).list[0])
+            }
             if (valor.size > 1) {
                 val lamda_Hija = this.expr.eval(lambda_ctx) as KoKoLambdaValue
                 val lamda = lamda_Hija.value as KoKoLambda

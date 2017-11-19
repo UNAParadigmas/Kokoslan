@@ -4,11 +4,10 @@
           Walter Chavez Oviedo
   @since 2017
 */
-package kokoslan.kotlin.ast
+package kokoslan.kotlin.ast;
 
 import kokoslan.exception.KoKoFailException
-import java.io.*
-import kokoslan.kotlin.ast.*
+import java.io.*;
 
 class KoKoFail() : KoKoAst{
  
