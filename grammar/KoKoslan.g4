@@ -46,18 +46,7 @@ value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
 				         | list_value 			              #ListValueExpr
                  | case_value			                #CaseValueExpr
 				         | 'fail()' 			                #FailValue 
-                 | primitive                      #PrimitiveExpr	 
                  | list_pat			    	            #ListPattern        
-;
-primitive   :  cons | rest | first | length
-;
-cons        : 'cons('expression')('expression')'
-;
-rest        : 'rest('expression')'
-;
-first       : 'first('expression')'
-;
-length      : 'length('expression')'
 ;
 call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*
 ;

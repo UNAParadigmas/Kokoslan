@@ -136,13 +136,6 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFailValue(KoKoslanParser.FailValueContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code PrimitiveExpr}
-	 * labeled alternative in {@link KoKoslanParser#value_expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPrimitiveExpr(KoKoslanParser.PrimitiveExprContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code CaseValueExpr}
 	 * labeled alternative in {@link KoKoslanParser#value_expr}.
 	 * @param ctx the parse tree
@@ -163,36 +156,6 @@ public interface KoKoslanVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAtomicValueExpr(KoKoslanParser.AtomicValueExprContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link KoKoslanParser#primitive}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPrimitive(KoKoslanParser.PrimitiveContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link KoKoslanParser#cons}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCons(KoKoslanParser.ConsContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link KoKoslanParser#rest}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRest(KoKoslanParser.RestContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link KoKoslanParser#first}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFirst(KoKoslanParser.FirstContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link KoKoslanParser#length}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLength(KoKoslanParser.LengthContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link KoKoslanParser#call_args}.
 	 * @param ctx the parse tree
