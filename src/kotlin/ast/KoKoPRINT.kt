@@ -8,13 +8,15 @@ package kokoslan.kotlin.ast
 
 import java.io.*
 import kokoslan.kotlin.eval.*
+import kokoslan.kotlin.exception.KoKoEvalException
 
-class KoKoPrint(val expr : KoKoAst ) : KoKoAst{
- 
+class KoKoPRINT(val arg : KoKoAst ) : KoKoAst{
+
    override fun genCode(out : PrintStream){
-        this.expr.genCode(out)
-	    out.println()
+        out.print("print( ")
+        this.arg.genCode(out)
+        out.println(" )")
    }
    
-   override fun eval(ctx:KoKoContext) = expr.eval(ctx)   
+   override fun eval(ctx:KoKoContext) = arg.eval(ctx)
 }

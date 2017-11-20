@@ -149,11 +149,20 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
 
     override fun visitCallValueExpr(ctx:KoKoslanParser.CallValueExprContext):KoKoAst {
         val head = visit(ctx.value_expr())
+        if(IS_PRIMITIVE(head)) {
+            if(ctx.call_args().list_expr().size == 0)
+                throw Exception("Primitives can't have 0 arguments.")
+
+            var args = ctx.call_args().list_expr()[0].expression().map { visit(it) }
+            if(ctx.call_args().list_expr().size == 1) {
+                return CALL_PRIMITIVE(head, args as MutableList<KoKoAst>)
+            }
+            var args2 = ctx.call_args().list_expr()[1].expression().map { visit(it) }
+            return CALL_PRIMITIVE(head, args as MutableList<KoKoAst>, args2 as MutableList<KoKoAst>)
+        }
         val args = visit(ctx.call_args()) as KoKoList
         return CALL(head, args)
     }
-
-    override fun visitPrintValue(ctx: KoKoslanParser.PrintValueContext) = PRINT(visit(ctx.expression()))
 
     override fun visitCall_args(ctx:KoKoslanParser.Call_argsContext):KoKoAst {
         if (ctx.list_expr() != null){
@@ -178,10 +187,6 @@ class KoKoCompiler(val outputFile:String? = null):KoKoslanBaseVisitor<KoKoAst>()
             return LISTExp(expressions, false)
         }
         return LISTExp()
-    }
-
-    override fun visitFailValue(ctx: KoKoslanParser.FailValueContext?): KoKoAst {
-        return FAIL()
     }
 
     /*override fun  visitCons(ctx: KoKoslanParser.ConsContext) :KoKoAst {

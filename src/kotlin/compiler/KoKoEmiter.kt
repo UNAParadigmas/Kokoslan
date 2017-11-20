@@ -8,6 +8,7 @@ package kokoslan.kotlin.compiler
 
 import kokoslan.kotlin.ast.*
 import kokoslan.kotlin.eval.*
+import java.util.*
 
 interface KoKoEmiter {
 	
@@ -15,29 +16,25 @@ interface KoKoEmiter {
 	
 	fun LET(id:KoKoAst, expr:KoKoAst) = KoKoLet(id, expr)
 
-    fun PRINT(expr: KoKoAst) = KoKoPrint(expr)
-
-	fun FAIL() = KoKoFail()
-  
 	fun OPERATOR(operator:String) = KoKoId(operator)
 	
 	fun OPERATION(operator:KoKoAst, operands: MutableList<KoKoAst>) = KoKoOperation(operator, operands)
 	
 	fun BI_OPERATION(operator:KoKoAst, left:KoKoAst, right:KoKoAst):KoKoAst {
 		val id = operator as KoKoId
-		when (id.value) {
-			"+"  -> return KoKoPLUS	(operator, left, right)
-			"-"  -> return KoKoMINUS(operator, left, right)
-			"*"  -> return KoKoMULT	(operator, left, right)
-			"/"  -> return KoKoDIV	(operator, left, right)
-			"<"  -> return KoKoLS	(operator, left, right)
-			">"  -> return KoKoGS	(operator, left, right)
-			"<=" -> return KoKoLEQ	(operator, left, right)
-			">=" -> return KoKoGEQ	(operator, left, right)
-			"&&" -> return KoKoAND	(operator, left, right)
-			"||" -> return KoKoOR	(operator, left, right)
-			"==" -> return KoKoEQS	(operator, left, right)
-			"!=" -> return KoKoNEQ	(operator, left, right)
+		return when (id.value) {
+			"+"  -> KoKoPLUS(operator, left, right)
+			"-"  -> KoKoMINUS(operator, left, right)
+			"*"  -> KoKoMULT(operator, left, right)
+			"/"  -> KoKoDIV	(operator, left, right)
+			"<"  -> KoKoLS	(operator, left, right)
+			">"  -> KoKoGS	(operator, left, right)
+			"<=" -> KoKoLEQ	(operator, left, right)
+			">=" -> KoKoGEQ	(operator, left, right)
+			"&&" -> KoKoAND	(operator, left, right)
+			"||" -> KoKoOR	(operator, left, right)
+			"==" -> KoKoEQS	(operator, left, right)
+			"!=" -> KoKoNEQ	(operator, left, right)
 			else -> throw Exception("Error => Unknown operator = ${operator}")
 		}
 	}
@@ -51,8 +48,28 @@ interface KoKoEmiter {
 	fun LIST():KoKoList = KoKoList()
 
 	fun LISTREST(valor:List<KoKoAst>):KoKoListPat= KoKoListPat(valor as MutableList<KoKoAst>, true)
-  
+
+	fun IS_PRIMITIVE(head: KoKoAst) : Boolean{
+		return when(head.toString()){
+            "first","rest","cons","length","fail" ->  true
+             else -> false
+		}
+	}
+
 	fun CALL(head:KoKoAst, args:KoKoList) = KoKoCall(head, args)
+
+	fun CALL_PRIMITIVE(head:KoKoAst, args:MutableList<KoKoAst>): KoKoAst {
+		return when (head.toString()) {
+            "fail"  -> KoKoFail()
+            "first" -> KoKoFirst(args)
+        	"rest"  -> KoKoRest(args)
+        	"length"-> return KoKoLength(args)
+            "cons"  -> throw Exception("Cons must have 2 arguments")
+			else -> throw Exception("Unexpected Exception")
+        }
+    }
+
+    fun CALL_PRIMITIVE(head:KoKoAst, args:MutableList<KoKoAst>, args2:MutableList<KoKoAst>) = KoKoCons(args, args2)
 
     fun LISTExp(expressions:List<KoKoAst>, pipe: Boolean) = KoKoArrayList(expressions, pipe)
 
