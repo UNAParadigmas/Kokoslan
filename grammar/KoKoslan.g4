@@ -16,7 +16,7 @@ expression   : part_expr (',' part_expr)*
 ;
 part_expr    :  lambda_expr | evaluable_expr | negative
 ;
-lambda_expr  : ('\\' pattern '.' expression) | (pattern ARROW expression)  
+lambda_expr  : '\\' pattern '.' expression
 ;
 evaluable_expr    :  add_expr | (bool_expr test_expr?)
 ;
@@ -45,8 +45,7 @@ value_expr   :    LEFT_PAR expression RIGHT_PAR 	#ParentValueExpr
                  | atomic_value 		              #AtomicValueExpr
 				         | list_value 			              #ListValueExpr
                  | case_value			                #CaseValueExpr
-				         | 'fail()' 			                #FailValue 
-                 | list_pat			    	            #ListPattern        
+				 | list_pat			    	            #ListPattern        
 ;
 call_args	:	'(' list_expr? ')' ( '(' list_expr? ')' )*
 ;
@@ -147,8 +146,6 @@ DIV :   '/'
 ADD :   '+' 
 ;
 SUB :   '-' 
-;
-ARROW:    '->'
 ;
 ID : [a-zA-Z][a-zA-Z_0-9]* 
 ;

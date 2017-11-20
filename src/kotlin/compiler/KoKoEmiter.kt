@@ -60,7 +60,6 @@ interface KoKoEmiter {
 
 	fun CALL_PRIMITIVE(head:KoKoAst, args:MutableList<KoKoAst>): KoKoAst {
 		return when (head.toString()) {
-            "fail"  -> KoKoFail()
             "first" -> KoKoFirst(args)
         	"rest"  -> KoKoRest(args)
         	"length"-> return KoKoLength(args)
@@ -78,8 +77,6 @@ interface KoKoEmiter {
     fun ELVIS(operator: KoKoAst, operands: MutableList<KoKoAst>) = KoKoElvis(operator, operands)
 
     fun LAMBDA(pattern : KoKoAst, expression : KoKoAst) = KoKoLambda(pattern, expression)
-
-	fun LAMBDAWHEN(pattern : KoKoAst, expression : KoKoAst) = KoKoLambdaWhen(pattern, expression)
 
 	fun PARENTESIS(expression : KoKoAst) = KoKoParentesis(expression)
 

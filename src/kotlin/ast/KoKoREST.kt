@@ -15,7 +15,6 @@ class KoKoRest(val operands: MutableList<KoKoAst>) : KoKoAst {
         if(operands.size > 1) throw KoKoEvalException("First can only receive one argument")
         val vec = (operands[0].eval(ctx) as KoKoListValue)
         if(vec.size == 0)  return vec
-        vec.removeAt(0)
-        return vec
+        return KoKoListValue(vec.subList(1,vec.size))
     }
 }

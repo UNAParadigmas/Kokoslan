@@ -18,23 +18,21 @@ open class KoKoBiOperation(operator:KoKoAst, left:KoKoAst, right:KoKoAst):KoKoOp
 	override fun eval(ctx:KoKoContext):KoKoValue {
 		try {
 			val operId = operator as KoKoId
-			val lv = left().eval(ctx) as KoKoAtom<*>
-			val rv = right().eval(ctx) as KoKoAtom<*>
-			when (operId.value) {
-				"+"  -> return KoKoNumValue(lv.value as Double + rv.value as Double)
-				"-"  -> return KoKoNumValue(lv.value as Double - rv.value as Double)
-				"*"  -> return KoKoNumValue(lv.value as Double * rv.value as Double)
-				"/"  -> return KoKoNumValue(lv.value as Double / rv.value as Double)
-				"<"  -> return KoKoBoolValue((lv.value as Double) < (rv.value as Double))
-				">"  -> return KoKoBoolValue((lv.value as Double) > (rv.value as Double))
-				"<=" -> return KoKoBoolValue(lv.value as Double <= rv.value as Double)
-				">=" -> return KoKoBoolValue(lv.value as Double >= rv.value as Double)
-				"&&" -> return KoKoBoolValue(lv.value as Boolean && rv.value as Boolean)
-				"||" -> return KoKoBoolValue(lv.value as Boolean || rv.value as Boolean)
-				"=="-> return KoKoBoolValue(lv.value == rv.value)
-				"!="-> return KoKoBoolValue(lv.value != rv.value)
-				else -> throw KoKoEvalException("KoKoBiOperation-> unimpemented operator")
-			}
+			val lv = left().eval(ctx) as KoKoNumValue
+			val rv = right().eval(ctx) as KoKoNumValue
+            return when (operId.value) {
+                "+"  -> KoKoNumValue(lv.value + rv.value)
+                "-"  -> KoKoNumValue(lv.value - rv.value)
+                "*"  -> KoKoNumValue(lv.value * rv.value)
+                "/"  -> KoKoNumValue(lv.value / rv.value)
+                "<"  -> KoKoBoolValue(lv.value < rv.value)
+                ">"  -> KoKoBoolValue(lv.value > rv.value)
+                "<=" -> KoKoBoolValue(lv.value <= rv.value)
+                ">=" -> KoKoBoolValue(lv.value >= rv.value)
+                "=="-> KoKoBoolValue(lv.value == rv.value)
+                "!="-> KoKoBoolValue(lv.value != rv.value)
+                else -> throw KoKoEvalException("KoKoBiOperation-> unimpemented operator")
+            }
 		}
 		catch (e:Exception) {
 			throw KoKoEvalException("${e.message}")

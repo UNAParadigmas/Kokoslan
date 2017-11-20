@@ -1,2 +1,0 @@
-let max = \x.\y. x > y ? x : y
-max(100)(110)
