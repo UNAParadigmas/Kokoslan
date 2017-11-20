@@ -23,7 +23,7 @@ class KoKoListPat(var pattern: MutableList<KoKoAst>, var pipe: Boolean) : KoKoAs
     }
 
     override fun eval(ctx: KoKoContext): KoKoValue {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return this.pattern[0].eval(ctx)
     }
 
 	fun eval(ctx : KoKoContext, valor: KoKoListValue, last: Boolean):KoKoContext {
