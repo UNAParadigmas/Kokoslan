@@ -19,8 +19,7 @@ fun main(args:Array<String>) {
 		println(">>> $VERSION  <<<")
 		println("...............................................\n")
 	// Get parameters
-
-		var inputFile:String? = "H:\\ProyectosGit\\Proyecto-K\\cases\\cases_insert_list_pat.kl"
+		var inputFile:String? = "H:\\ProyectosGit\\PK 2\\Proyecto-K\\cases\\cases_insert_list_pat.kl"
     	//var inputFile:String? = "C:\\Users\\Walter\\Dropbox\\Proyecto-K\\Proyecto-K\\cases\\cases_max.kl"
 		var outputFile:String? = null
 		

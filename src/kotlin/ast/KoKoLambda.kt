@@ -26,6 +26,7 @@ data class KoKoLambda(var pattern:KoKoAst, var expr:KoKoAst, var lambda_ctx : Ko
 
 	
 	fun eval(valor : KoKoList): KoKoValue{
+
 		val variable = this.lambda_ctx.find( KoKoId("#KoKo") ) as KoKoNullValue
 		if(pattern is KoKoArrayList){
             val matched_List = (lambda_ctx.parent ?: lambda_ctx).find((valor[0] as MutableList<KoKoAst>)[0] as KoKoId)
@@ -50,6 +51,9 @@ data class KoKoLambda(var pattern:KoKoAst, var expr:KoKoAst, var lambda_ctx : Ko
                     return this.expr.eval(lambda_ctx)
                 return lamda.eval(valor)
             }
+        }
+        if(this.expr is KoKoArrayList){
+            return (this.expr as KoKoArrayList).eval(lambda_ctx, true)
         }
 		return this.expr.eval(lambda_ctx)
 	}
