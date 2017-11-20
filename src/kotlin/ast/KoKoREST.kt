@@ -1,21 +1,20 @@
 package kokoslan.kotlin.ast
 
 import kokoslan.kotlin.eval.*
+import java.io.*
+import kokoslan.kotlin.exception.KoKoEvalException
 
 class KoKoRest(val operands: MutableList<KoKoAst>) : KoKoAst {
-    /*override fun genCode(out : PrintStream){
-        out.print("first(")
+    override fun genCode(out : PrintStream){
+        out.print("rest(")
 	    operands[0].genCode(out)
-        operands.forEach{ e ->
-            out.print(",")
-            e.genCode(out)
-        }
-	    out.print(")")
+        out.print(")")
    }
-*/
+
     override fun eval(ctx: KoKoContext): KoKoValue {
-        var vec = operands[0].eval(ctx)
-        (vec as KoKoListValue).removeAt(0)
-        return vec
+        if(operands.size > 1) throw KoKoEvalException("First can only receive one argument")
+        val vec = (operands[0].eval(ctx) as KoKoListValue)
+        if(vec.size == 0)  return vec
+        return KoKoListValue(vec.subList(1,vec.size))
     }
 }

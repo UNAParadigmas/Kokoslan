@@ -26,7 +26,10 @@ class KoKoCall(var head:KoKoAst, var args:KoKoList = KoKoList(Arrays.asList())) 
         	val t = (args[0] as KoKoList)[0].eval(ctx)
 			if(t is KoKoNumValue)
                 return lambda.eval(KoKoList(mutableListOf(KoKoNum(t.value))))
-        	return lambda.eval(KoKoList(mutableListOf((t as KoKoLambdaValue).value)))
+			if(t is KoKoLambdaValue)
+				return lambda.eval(KoKoList(mutableListOf((t).value)))
+
+			//return lambda.eval(KoKoList((args[0] as KoKoList)[0] as MutableList<KoKoAst>))
     	}
 		return lambda.eval(args)
 	}

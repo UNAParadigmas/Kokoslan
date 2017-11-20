@@ -1,8 +1,9 @@
 package kokoslan.kotlin.ast
 
 import kokoslan.kotlin.eval.*
+import kokoslan.kotlin.exception.KoKoEvalException
 
-class KoKoCons(val operands: MutableList<KoKoAst>) : KoKoAst {
+class KoKoCons(val arg1: MutableList<KoKoAst>,val arg2: MutableList<KoKoAst>) : KoKoAst {
     /*override fun genCode(out : PrintStream){
         out.print("first(")
 	    operands[0].genCode(out)
@@ -14,9 +15,9 @@ class KoKoCons(val operands: MutableList<KoKoAst>) : KoKoAst {
    }
 */
     override fun eval(ctx: KoKoContext): KoKoValue {
-        var vec  = (operands[0].eval(ctx) as KoKoListValue)
-        var vec2 = (operands[1].eval(ctx) as KoKoListValue)
-        vec2.forEach{vec.add(it)}
-        return vec
+        var list  = arg1[0].eval(ctx) as KoKoListValue
+        var list2 = arg2[0].eval(ctx) as KoKoListValue
+        list2.forEach{list.add(it)}
+        return list
     }
 }
